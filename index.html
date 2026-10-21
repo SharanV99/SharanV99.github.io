@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       SEO / META  —  edit these to control how the site appears
+       when shared on Google, LinkedIn, etc.
+       ============================================================ -->
+  <title>Sharan Venkatesh — Data Analyst</title>
+  <meta name="description" content="Sharan Venkatesh — Data and Product Analyst specializing in customer analytics and experimentation. Seattle, WA." />
+  <meta name="author" content="Sharan Venkatesh" />
+  <meta property="og:title" content="Sharan Venkatesh — Data Analyst" />
+  <meta property="og:description" content="Data analyst specializing in customer analytics and experimentation." />
+  <meta property="og:type" content="website" />
+
+  <!-- FAVICON  —  replace favicon.svg in the folder to change the browser-tab icon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- FONTS (loaded from Google Fonts) and our stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       TOP NAVIGATION BAR
+       ============================================================ -->
+  <header class="topbar">
+    <a href="#top" class="logo">Sharan Venkatesh</a>
+    <div class="topbar-right">
+      <span class="mono small topbar-tag">2026 PORTFOLIO</span>
+      <button id="menuToggle" class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="slideMenu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SLIDE-OUT MENU (toggled by the hamburger) -->
+  <nav id="slideMenu" class="slide-menu" aria-hidden="true">
+    <button id="menuClose" class="menu-close" aria-label="Close menu">&times;</button>
+    <a href="#about" class="menu-link">About</a>
+    <a href="#experience" class="menu-link">Experience</a>
+    <a href="#projects" class="menu-link">Projects</a>
+    <a href="#certifications" class="menu-link">Certifications</a>
+    <a href="#contact" class="menu-link">Contact</a>
+  </nav>
+  <!-- dim layer behind the menu; clicking it closes the menu -->
+  <div id="menuBackdrop" class="menu-backdrop"></div>
+
+  <main id="top">
+
+    <!-- ============================================================
+         1. HERO SECTION
+         To change your headline, tags, taglines, or name — edit here.
+         To add your photo: replace the .photo-frame block's contents
+         with  <img src="photo.jpg" alt="Sharan Venkatesh" />
+         ============================================================ -->
+    <section class="hero">
+      <div class="hero-top">
+        <div class="hero-title-block reveal">
+          <h1 class="hero-title">DATA<br />ANALYST</h1>
+          <div class="tags">
+            <span class="tag">SQL</span>
+            <span class="tag">PYTHON</span>
+            <span class="tag">EXPERIMENTATION</span>
+          </div>
+        </div>
+        <div class="hero-meta reveal">
+          <span class="status-pill"><span class="dot"></span>OPEN FOR WORK</span>
+          <div class="mono small muted">01 /</div>
+          <div class="mono small muted">FROM SEATTLE<br />WITH DATA</div>
+        </div>
+      </div>
+
+      <div class="hero-bottom">
+        <div class="hero-photo-block reveal">
+          <!-- PHOTO PLACEHOLDER — replace contents with an <img> when ready -->
+          <div class="photo-frame">
+            <span class="mono small">ADD YOUR PHOTO</span>
+          </div>
+          <div class="hero-loc mono small">
+            &rarr;&nbsp; BASED IN SEATTLE, WA<br />
+            &nbsp;&nbsp;&nbsp;&nbsp; MPS ANALYTICS, NORTHEASTERN '26
+          </div>
+        </div>
+        <div class="hero-name-block reveal">
+          <div class="mono small">TURNING DATA INTO DECISIONS —<br />CUSTOMER ANALYTICS &amp; EXPERIMENTATION.</div>
+          <div class="mono small" style="margin-top:14px;">OPEN TO DATA &amp; PRODUCT ANALYST ROLES</div>
+          <h2 class="hero-name">SHARAN<br />VENKATESH</h2>
+          <div class="hero-cta-row">
+            <!-- RESUME DOWNLOAD — put your resume.pdf in the folder -->
+            <a href="resume.pdf" download class="pill-btn">RESUME <span>&darr;</span></a>
+            <a href="#projects" class="pill-btn">SELECTED WORK <span>&searr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. SLIDING-TEXT SECTION  (lines sweep on scroll)
+         Edit the two big lines and the FOCUS list here.
+         ============================================================ -->
+    <section class="sweep-section">
+      <div class="sweep-line sweep-left" data-sweep="left" data-offset="0">
+        <span class="big">Analytics</span>
+        <span class="amp">&amp;</span>
+        <span class="big">Insight</span>
+      </div>
+      <div class="sweep-line sweep-right" data-sweep="right" data-offset="0">
+        <span class="big">Data</span>
+        <span class="amp">&amp;</span>
+        <span class="big">Decisions</span>
+        <span class="focus-list">
+          <span class="mono small focus-label">FOCUS</span>
+          <span class="focus-items">REPORTING<br />VISUALIZATION<br />EXPERIMENTATION<br />MODELING</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. ABOUT + SKILLS
+         Edit your bio paragraphs and the skill categories here.
+         To add a skill: add it inside the relevant .skill-values span.
+         ============================================================ -->
+    <section class="about-section" id="about">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h2 class="big-head">ABOUT</h2>
+          <p>Data analyst with a Master's in Analytics (Applied Machine Intelligence) from Northeastern University and nearly two years of professional experience in telecom customer analytics, turning messy data into decisions.</p>
+          <p>I work across the full analytics stack — SQL, Python, and R for analysis and modeling, Tableau and Power BI for bringing results to stakeholders. My focus is customer analytics and experimentation: segmentation, forecasting, and A/B testing that drive real business outcomes.</p>
+          <p>I care most about analysis that's rigorous, defensible, and actually used.</p>
+        </div>
+        <div class="skills-grid reveal">
+          <!-- To add a skill: copy one <span class="skill-item"> inside its row -->
+          <div class="skill-row">
+            <span class="skill-cat">PROGRAMMING</span>
+            <span class="skill-values"><span class="skill-item">SQL</span><span class="skill-item">PYTHON</span><span class="skill-item">R</span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">BI &amp; VISUALIZATION</span>
+            <span class="skill-values"><span class="skill-item">TABLEAU</span><span class="skill-item">POWER BI</span><span class="skill-item">EXCEL</span><span class="skill-item">GOOGLE SHEETS</span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">STATISTICS</span>
+            <span class="skill-values"><span class="skill-item">A/B TESTING</span><span class="skill-item">REGRESSION</span><span class="skill-item">FORECASTING</span><span class="skill-item">SEGMENTATION</span><span class="skill-item">CHURN MODELING</span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">DATA PLATFORMS</span>
+            <span class="skill-values"><span class="skill-item">SNOWFLAKE</span><span class="skill-item">DATABRICKS</span><span class="skill-item">BIGQUERY</span><span class="skill-item">MYSQL</span><span class="skill-item">SQL SERVER</span><span class="skill-item">ORACLE</span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">PRODUCT ANALYTICS</span>
+            <span class="skill-values"><span class="skill-item">GA4</span><span class="skill-item">ADOBE ANALYTICS</span></span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">GENAI</span>
+            <span class="skill-values"><span class="skill-item">LLMS</span><span class="skill-item">RAG PIPELINES</span><span class="skill-item">LANGCHAIN</span><span class="skill-item">KUBERNETES</span><span class="skill-item">ELK STACK</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. EDUCATION + EXPERIENCE  (two-column timeline)
+         To add an entry: copy a .tl-item block inside the relevant column.
+         ============================================================ -->
+    <section class="timeline-section" id="experience">
+      <div class="timeline-grid">
+
+        <div class="timeline-col reveal">
+          <div class="mono small section-label">EDUCATION</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="tl-node"></span>
+              <div class="mono small muted">2024 — 2026</div>
+              <div class="tl-title">Northeastern University</div>
+              <div class="tl-sub">MPS in Analytics (Applied Machine Intelligence) · Boston, MA</div>
+              <div class="tl-note">GPA 3.9 / 4.0</div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-node"></span>
+              <div class="mono small muted">2018 — 2022</div>
+              <div class="tl-title">BMS College of Engineering</div>
+              <div class="tl-sub">BE in Information Science · Bengaluru, India</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-col reveal">
+          <div class="mono small section-label">EXPERIENCE</div>
+          <div class="timeline">
+            <div class="tl-item">
+              <span class="tl-node"></span>
+              <div class="mono small muted">JUN 2026 — PRESENT</div>
+              <div class="tl-title">Street Care (Bright Mind Enrichment)</div>
+              <div class="tl-sub">Data Analyst (Volunteer) · Co-Lead, External Collaborations · Seattle, WA (Remote)</div>
+              <div class="tl-note">Alumni re-engagement analysis, outreach funnel, and prospect scoring for a nonprofit</div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-node"></span>
+              <div class="mono small muted">JUN 2023 — MAY 2024</div>
+              <div class="tl-title">Sarada Technologies</div>
+              <div class="tl-sub">Data Analyst · Chennai, India</div>
+              <div class="tl-note">Customer segmentation, retention, and A/B testing for telecom clients</div>
+            </div>
+            <div class="tl-item">
+              <span class="tl-node"></span>
+              <div class="mono small muted">OCT 2022 — MAY 2023</div>
+              <div class="tl-title">Sarada Technologies</div>
+              <div class="tl-sub">Data Analyst Intern · Chennai, India</div>
+              <div class="tl-note">Forecasting models and KPI reporting dashboards</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. SKILL TICKER  (two rows, infinite scroll)
+         Each row's content is duplicated once so the loop is seamless —
+         if you edit one half, edit the matching half too.
+         ============================================================ -->
+    <section class="ticker-section">
+      <div class="ticker-track">
+        <div class="ticker-row ticker-right">
+          <span class="tk">SQL</span><span class="tk-dot">·</span><span class="tk">PYTHON</span><span class="tk-dot">·</span><span class="tk">R</span><span class="tk-dot">·</span><span class="tk">TABLEAU</span><span class="tk-dot">·</span><span class="tk">POWER BI</span><span class="tk-dot">·</span><span class="tk">EXCEL</span><span class="tk-dot">·</span><span class="tk">A/B TESTING</span><span class="tk-dot">·</span><span class="tk">REGRESSION</span><span class="tk-dot">·</span><span class="tk">FORECASTING</span><span class="tk-dot">·</span><span class="tk">SEGMENTATION</span><span class="tk-dot">·</span>
+          <span class="tk">SQL</span><span class="tk-dot">·</span><span class="tk">PYTHON</span><span class="tk-dot">·</span><span class="tk">R</span><span class="tk-dot">·</span><span class="tk">TABLEAU</span><span class="tk-dot">·</span><span class="tk">POWER BI</span><span class="tk-dot">·</span><span class="tk">EXCEL</span><span class="tk-dot">·</span><span class="tk">A/B TESTING</span><span class="tk-dot">·</span><span class="tk">REGRESSION</span><span class="tk-dot">·</span><span class="tk">FORECASTING</span><span class="tk-dot">·</span><span class="tk">SEGMENTATION</span><span class="tk-dot">·</span>
+        </div>
+      </div>
+      <div class="ticker-track">
+        <div class="ticker-row ticker-left">
+          <span class="tk">SNOWFLAKE</span><span class="tk-dot">·</span><span class="tk">DATABRICKS</span><span class="tk-dot">·</span><span class="tk">BIGQUERY</span><span class="tk-dot">·</span><span class="tk">MYSQL</span><span class="tk-dot">·</span><span class="tk">SQL SERVER</span><span class="tk-dot">·</span><span class="tk">GA4</span><span class="tk-dot">·</span><span class="tk">ADOBE ANALYTICS</span><span class="tk-dot">·</span><span class="tk">LANGCHAIN</span><span class="tk-dot">·</span><span class="tk">RAG</span><span class="tk-dot">·</span><span class="tk">KUBERNETES</span><span class="tk-dot">·</span>
+          <span class="tk">SNOWFLAKE</span><span class="tk-dot">·</span><span class="tk">DATABRICKS</span><span class="tk-dot">·</span><span class="tk">BIGQUERY</span><span class="tk-dot">·</span><span class="tk">MYSQL</span><span class="tk-dot">·</span><span class="tk">SQL SERVER</span><span class="tk-dot">·</span><span class="tk">GA4</span><span class="tk-dot">·</span><span class="tk">ADOBE ANALYTICS</span><span class="tk-dot">·</span><span class="tk">LANGCHAIN</span><span class="tk-dot">·</span><span class="tk">RAG</span><span class="tk-dot">·</span><span class="tk">KUBERNETES</span><span class="tk-dot">·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. PROJECTS
+         To add a project: copy one <article class="project-card"> block.
+         - Replace the preview placeholder with: <img src="project1.png" alt="..." />
+         - Set the real GitHub repo URL in the card's href.
+         ============================================================ -->
+    <section class="projects-section" id="projects">
+      <div class="section-head">
+        <div>
+          <div class="mono small section-label">SELECTED PROJECTS</div>
+          <h2 class="big-head">FEATURED<br />WORK</h2>
+        </div>
+        <p class="section-blurb">Real academic and professional work — analysis, models, and the code behind them. Every project links to its repository.</p>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- PROJECT 1 — card + case study (the case study text lives in the <dialog> further down) -->
+        <article class="project-card reveal">
+          <div class="project-preview">
+            <span class="mono tiny">ADD CHART / MAP</span>
+          </div>
+          <div class="project-info">
+            <div class="mono small muted">01 / R · LASSO</div>
+            <div class="project-title">Boston 311 Service Requests</div>
+            <p class="card-result">City Worker App requests were resolved 284 hours faster than consumer-facing channels.</p>
+            <div class="card-tags">
+              <span class="card-tag">R</span><span class="card-tag">REGRESSION</span><span class="card-tag">STATS</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-btn" data-open="cs-311">CASE STUDY</button>
+              <!-- Set the repo URL here -->
+              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="project-card reveal">
+          <div class="project-preview">
+            <span class="mono tiny">ADD ARCHITECTURE</span>
+          </div>
+          <div class="project-info">
+            <div class="mono small muted">02 / RAG · LLM</div>
+            <div class="project-title">GenAI Travel Analytics</div>
+            <p class="card-result">A validation layer that blocks answers about matches and dates that don’t exist, before the LLM responds.</p>
+            <div class="card-tags">
+              <span class="card-tag">RAG</span><span class="card-tag">KUBERNETES</span><span class="card-tag">ELK</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-btn" data-open="cs-genai">CASE STUDY</button>
+              <!-- Set the repo URL here -->
+              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3 — in progress -->
+        <article class="project-card reveal">
+          <div class="project-preview">
+            <span class="status-pill"><span class="dot"></span>IN PROGRESS</span>
+          </div>
+          <div class="project-info">
+            <div class="mono small muted">03 / PYTHON · CHURN</div>
+            <div class="project-title">Last.fm Churn Propensity</div>
+            <p class="card-result">A churn pipeline on real listening data. Data ingestion is built; modeling and targeting are next.</p>
+            <div class="card-tags">
+              <span class="card-tag">PYTHON</span><span class="card-tag">PANDAS</span><span class="card-tag">CHURN</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-btn" data-open="cs-lastfm">CASE STUDY</button>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/lastfm-churn" target="_blank" rel="noopener">CODE &nearr;</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <a href="https://github.com/SharanV99" class="big-pill-btn" target="_blank" rel="noopener">VIEW ALL ON GITHUB <span>&nearr;</span></a>
+
+      <!-- ============================================================
+           CASE STUDIES — pop-up panels opened by each card's CASE STUDY button.
+           Edit the text inside each <dialog>. Close with ×, Esc, or clicking outside.
+           ============================================================ -->
+      <dialog class="case-study" id="cs-311">
+        <button class="cs-close" aria-label="Close">&times;</button>
+        <div class="mono small muted">01 / R · LASSO REGRESSION</div>
+        <h3 class="cs-title">Boston 311 Service Requests</h3>
+        <dl class="cs-body">
+          <dt>Question</dt>
+          <dd>What actually drives how long the City of Boston takes to resolve a service request, and is the city getting faster?</dd>
+          <dt>Approach</dt>
+          <dd>Cleaned 1.3M service requests in R and engineered 31 features, including geospatial and temporal variables. Used LASSO regression to isolate the drivers of resolution time, with stepwise regression as a check.</dd>
+          <dt>Finding</dt>
+          <dd>Requests submitted through the City Worker App were resolved 284 hours faster than those from consumer-facing channels. Average response time improved 13% year over year (119 hours per year, p &lt; 0.001).</dd>
+          <dt>Recommendation</dt>
+          <dd>Expand employee training and City Worker App adoption, since the internal channel is where the speed gains are.</dd>
+        </dl>
+      </dialog>
+
+      <dialog class="case-study" id="cs-genai">
+        <button class="cs-close" aria-label="Close">&times;</button>
+        <div class="mono small muted">02 / RAG · LANGCHAIN · KUBERNETES</div>
+        <h3 class="cs-title">GenAI Travel Analytics Platform</h3>
+        <dl class="cs-body">
+          <dt>Question</dt>
+          <dd>How do you stop a travel assistant from confidently answering questions about matches or dates that don’t exist?</dd>
+          <dt>Approach</dt>
+          <dd>Built a “hallucination firewall” into a LangChain RAG pipeline that checks each query against official FIFA schedules and blocks invalid matches or dates before generation. Ran the services on Kubernetes (Minikube) with self-healing pods, and used the ELK Stack to capture application logs.</dd>
+          <dt>Result</dt>
+          <dd>Failure recovery time dropped from 15+ minutes to under 10 seconds. Kibana dashboards tracked user search intent and API latency in real time.</dd>
+          <dt>Takeaway</dt>
+          <dd>Validating inputs before generation is a cheaper, more reliable guardrail than trying to catch bad answers afterward.</dd>
+        </dl>
+      </dialog>
+
+      <dialog class="case-study" id="cs-lastfm">
+        <button class="cs-close" aria-label="Close">&times;</button>
+        <div class="mono small muted">03 / PYTHON · IN PROGRESS</div>
+        <h3 class="cs-title">Last.fm Churn Propensity</h3>
+        <dl class="cs-body">
+          <dt>Question</dt>
+          <dd>Can listening history predict which users are about to go silent on the platform, and who is worth targeting to win back?</dd>
+          <dt>Done so far</dt>
+          <dd>Set up secure API access and wrote a paginated fetch script for the Last.fm recent-tracks API. Defined churn at the platform level (a user going silent overall) rather than per artist, so the model predicts real disengagement.</dd>
+          <dt>Next</dt>
+          <dd>Feature engineering, time-based train/test splits, probability calibration, expected-value targeting, and an experiment design with power analysis.</dd>
+        </dl>
+      </dialog>
+    </section>
+
+    <!-- ============================================================
+         7. CERTIFICATIONS
+         To add a certificate: copy one <div class="cert-card"> block.
+         Fill the YEAR — slot with the real issue year when you have it.
+         ============================================================ -->
+    <section class="certs-section" id="certifications">
+      <div class="section-head">
+        <div>
+          <div class="mono small section-label">CERTIFICATIONS</div>
+          <h2 class="big-head">CREDENTIALS</h2>
+        </div>
+        <p class="section-blurb">Verified certifications across visualization, cloud data platforms, and analytics.</p>
+      </div>
+
+      <div class="cert-grid">
+
+        <div class="cert-card reveal">
+          <div class="cert-head">
+            <span class="mono tiny faint">YEAR —</span>
+            <span class="mono tiny muted">VISUALIZATION</span>
+          </div>
+          <div class="cert-icon"></div>
+          <div class="cert-title">Tableau Desktop Foundations</div>
+          <div class="cert-issuer">Salesforce</div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-head">
+            <span class="mono tiny faint">YEAR —</span>
+            <span class="mono tiny muted">DATA PLATFORM</span>
+          </div>
+          <div class="cert-icon"></div>
+          <div class="cert-title">Databricks Fundamentals</div>
+          <div class="cert-issuer">Databricks</div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-head">
+            <span class="mono tiny faint">YEAR —</span>
+            <span class="mono tiny muted">DATA WAREHOUSE</span>
+          </div>
+          <div class="cert-icon"></div>
+          <div class="cert-title">Data Warehousing Workshop</div>
+          <div class="cert-issuer">Snowflake</div>
+        </div>
+
+        <div class="cert-card reveal">
+          <div class="cert-head">
+            <span class="mono tiny faint">YEAR —</span>
+            <span class="mono tiny muted">WEB ANALYTICS</span>
+          </div>
+          <div class="cert-icon"></div>
+          <div class="cert-title">Google Analytics Certification</div>
+          <div class="cert-issuer">Google Digital Academy</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CONTACT + FOOTER
+         Update your emails, social links, and resume link here.
+         ============================================================ -->
+    <section class="contact-section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <div class="mono small section-label">CONTACT</div>
+          <h2 class="contact-head">LET'S<br /><span class="ghost">TALK</span></h2>
+          <p>Open to data and product analyst roles. I’d love to hear from you.</p>
+          <div class="social-row">
+            <!-- Set your real LinkedIn / GitHub URLs here -->
+            <a href="https://www.linkedin.com/in/sharanv05" class="social-circle" target="_blank" rel="noopener" aria-label="LinkedIn"><span data-icon="linkedin"></span></a>
+            <a href="https://github.com/SharanV99" class="social-circle" target="_blank" rel="noopener" aria-label="GitHub"><span data-icon="github"></span></a>
+            <a href="mailto:sharanv05@gmail.com" class="social-circle" aria-label="Email"><span data-icon="mail"></span></a>
+          </div>
+        </div>
+
+        <div class="contact-right reveal">
+          <div class="email-block">
+            <div class="mono tiny faint">PRIMARY</div>
+            <div class="email-addr" data-copy="sharanv05@gmail.com">SHARANV05<span class="ghost">@GMAIL.COM</span></div>
+            <button class="copy-btn" data-copy="sharanv05@gmail.com"><span data-icon="copy"></span> COPY ADDRESS</button>
+          </div>
+          <div class="email-block">
+            <div class="mono tiny faint">UNIVERSITY</div>
+            <div class="email-addr edu" data-copy="Venkatesh.sha@northeastern.edu">VENKATESH.SHA<span class="ghost">@NORTHEASTERN.EDU</span></div>
+            <button class="copy-btn" data-copy="Venkatesh.sha@northeastern.edu"><span data-icon="copy"></span> COPY ADDRESS</button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="footer-top">
+          <div class="footer-nav">
+            <div class="mono small section-label">NAVIGATION</div>
+            <a href="#about">ABOUT</a>
+            <a href="#experience">EXPERIENCE</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#certifications">CERTIFICATIONS</a>
+            <a href="#contact">CONTACT</a>
+          </div>
+          <a href="#top" class="back-to-top">
+            <span class="btt-circle"><span data-icon="up"></span></span>
+            <span class="mono tiny muted">BACK TO TOP</span>
+          </a>
+        </div>
+        <div class="watermark">SHARAN VENKATESH</div>
+        <div class="footer-bottom mono tiny muted">© 2026 SHARAN VENKATESH</div>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
