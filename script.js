@@ -175,4 +175,87 @@
     d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
   });
 
+  /* ---------- 8. CERTIFICATE VIEWER ----------
+     Clicking a cert card "lifts" it and grows it into a centered panel
+     showing the certificate image; closing shrinks it back into the card. */
+  var viewer = document.getElementById("certViewer");
+  if (viewer) {
+    var panel = viewer.querySelector(".cv-panel");
+    var backdrop2 = viewer.querySelector(".cv-backdrop");
+    var vImg = viewer.querySelector(".cv-img");
+    var vTitle = viewer.querySelector(".cv-title");
+    var vSub = viewer.querySelector(".cv-sub");
+    var vOpen = viewer.querySelector(".cv-open");
+    var vClose = viewer.querySelector(".cv-close");
+    var activeCard = null, busy = false;
+    var EASE = "cubic-bezier(0.2, 0.8, 0.2, 1)";
+
+    /* preload certificate images so the panel opens at the right size */
+    document.querySelectorAll(".cert-card[data-img]").forEach(function (c) { new Image().src = c.getAttribute("data-img"); });
+
+    function cardToPanel(card) {
+      var from = card.getBoundingClientRect(), to = panel.getBoundingClientRect();
+      var dx = (from.left + from.width / 2) - (to.left + to.width / 2);
+      var dy = (from.top + from.height / 2) - (to.top + to.height / 2);
+      return "translate(" + dx + "px," + dy + "px) scale(" + (from.width / to.width) + "," + (from.height / to.height) + ")";
+    }
+
+    function openCert(card) {
+      if (busy || activeCard) return;
+      busy = true; activeCard = card;
+      var src = card.getAttribute("data-img");
+      vImg.src = src;
+      vImg.alt = card.querySelector(".cert-title").textContent + " certificate";
+      vTitle.textContent = card.querySelector(".cert-title").textContent;
+      vSub.textContent = card.querySelector(".cert-issuer").textContent + " · Issued " + (card.getAttribute("data-issued") || "");
+      vOpen.href = src;
+      var ready = vImg.decode ? vImg.decode().catch(function () {}) : Promise.resolve();
+      ready.then(function () {
+        if (vImg.naturalWidth) panel.style.setProperty("--r", (vImg.naturalWidth / vImg.naturalHeight).toFixed(3));
+        viewer.hidden = false;
+        document.body.style.overflow = "hidden";
+        var done = function () { busy = false; vClose.focus(); };
+        if (reduceMotion || !panel.animate) { card.style.visibility = "hidden"; done(); return; }
+        var start = cardToPanel(card);
+        card.style.visibility = "hidden";   /* the card "lifts off" the grid */
+        backdrop2.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 350, easing: "ease" });
+        vImg.animate([{ opacity: 0 }, { opacity: 0, offset: 0.35 }, { opacity: 1 }], { duration: 600, easing: "ease" });
+        panel.animate([{ transform: start, borderRadius: "12px" }, { transform: "none", borderRadius: "14px" }],
+          { duration: 560, easing: EASE }).onfinish = done;
+      });
+    }
+
+    function closeCert() {
+      if (busy || !activeCard) return;
+      busy = true;
+      var card = activeCard;
+      var finish = function () {
+        viewer.hidden = true; card.style.visibility = "";
+        document.body.style.overflow = ""; activeCard = null; busy = false;
+        var btn = card.querySelector(".cert-view-btn"); if (btn) btn.focus({ preventScroll: true });
+      };
+      if (reduceMotion || !panel.animate) { finish(); return; }
+      backdrop2.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, easing: "ease", fill: "forwards" });
+      vImg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200, easing: "ease", fill: "forwards" });
+      panel.animate([{ transform: "none" }, { transform: cardToPanel(card) }],
+        { duration: 460, easing: EASE, fill: "forwards" }).onfinish = function () {
+          finish();
+          panel.getAnimations().forEach(function (a) { a.cancel(); });
+          backdrop2.getAnimations().forEach(function (a) { a.cancel(); });
+          vImg.getAnimations().forEach(function (a) { a.cancel(); });
+        };
+    }
+
+    document.querySelectorAll(".cert-card[data-img]").forEach(function (card) {
+      card.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        openCert(card);
+      });
+    });
+    vClose.addEventListener("click", closeCert);
+    backdrop2.addEventListener("click", closeCert);
+    viewer.addEventListener("click", function (e) { if (e.target === viewer) closeCert(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && activeCard) closeCert(); });
+  }
+
 })();
