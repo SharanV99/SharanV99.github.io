@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 
 <body>
@@ -280,20 +280,20 @@
 
         <!-- PROJECT 2 -->
         <article class="project-card reveal">
-          <div class="project-preview">
-            <span class="mono tiny">ADD ARCHITECTURE</span>
+          <div class="project-preview preview-fit">
+            <img src="projects/genai-card.png" alt="AI Travel Concierge input screen: city, trip length, match and interests" loading="lazy" onerror="this.remove()" />
+            <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
           </div>
           <div class="project-info">
             <div class="mono small muted">02 / RAG · LLM</div>
-            <div class="project-title">GenAI Travel Analytics</div>
-            <p class="card-result">A validation layer that blocks answers about matches and dates that don’t exist, before the LLM responds.</p>
+            <div class="project-title">AI Travel Concierge</div>
+            <p class="card-result">An AI travel planner built for 2026 World Cup fans, creating match-day itineraries.</p>
             <div class="card-tags">
               <span class="card-tag">RAG</span><span class="card-tag">KUBERNETES</span><span class="card-tag">ELK</span>
             </div>
             <div class="card-actions">
               <button class="card-btn" data-open="cs-genai">CASE STUDY</button>
-              <!-- Set the repo URL here -->
-              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/ai-travel-concierge" target="_blank" rel="noopener">CODE &nearr;</a>
             </div>
           </div>
         </article>
@@ -343,18 +343,38 @@
 
       <dialog class="case-study" id="cs-genai">
         <button class="cs-close" aria-label="Close">&times;</button>
+        <div class="cs-hero">
+          <img src="projects/genai-itinerary.png" alt="Generated day-by-day itinerary in the AI Travel Concierge app" onerror="this.remove()" />
+          <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
+        </div>
         <div class="mono small muted">02 / RAG · LANGCHAIN · KUBERNETES</div>
-        <h3 class="cs-title">GenAI Travel Analytics Platform</h3>
+        <h3 class="cs-title">AI Travel Concierge</h3>
+        <div class="cs-tags">
+          <span class="card-tag">TEAM PROJECT · NORTHEASTERN</span><span class="card-tag">FALL 2025</span><span class="card-tag">LLAMA 3 · GROQ</span><span class="card-tag">STREAMLIT</span>
+        </div>
         <dl class="cs-body">
-          <dt>Question</dt>
-          <dd>How do you stop a travel assistant from confidently answering questions about matches or dates that don’t exist?</dd>
-          <dt>Approach</dt>
-          <dd>Built a “hallucination firewall” into a LangChain RAG pipeline that checks each query against official FIFA schedules and blocks invalid matches or dates before generation. Ran the services on Kubernetes (Minikube) with self-healing pods, and used the ELK Stack to capture application logs.</dd>
-          <dt>Result</dt>
-          <dd>Failure recovery time dropped from 15+ minutes to under 10 seconds. Kibana dashboards tracked user search intent and API latency in real time.</dd>
-          <dt>Takeaway</dt>
-          <dd>Validating inputs before generation is a cheaper, more reliable guardrail than trying to catch bad answers afterward.</dd>
+          <dt>Problem</dt>
+          <dd>The 2026 World Cup spanned 16 host cities across the USA, Canada, and Mexico. Fans with tickets often lacked the “last-mile” logistics: stadium transfer rules, safe neighborhoods, and transit routes. Generic travel sites didn’t have match-specific context, and standard AI chatbots tended to invent match dates and venues that didn’t exist.</dd>
+          <dt>What we built</dt>
+          <dd>An AI travel planner in Streamlit. Users pick a city, a match, and their interests, and a LangChain RAG pipeline with Llama 3 (via the Groq API) builds a day-by-day itinerary from a curated knowledge base of match schedules, stadium logistics, and city guides. Deployed with Docker and Kubernetes (Minikube), with ELK dashboards tracking user searches and API latency.
+            <figure class="cs-figure">
+              <img src="projects/genai-architecture.png" alt="Architecture: Streamlit front end, LangChain with Llama 3, validated against the official schedule" loading="lazy" />
+              <figcaption class="mono tiny">ARCHITECTURE</figcaption>
+            </figure>
+            <figure class="cs-figure">
+              <img src="projects/genai-kibana.jpg" alt="Kibana dashboard showing 6,315 logged application events" loading="lazy" />
+              <figcaption class="mono tiny">KIBANA · LOGGED APP EVENTS</figcaption>
+            </figure>
+          </dd>
+          <dt>Challenge</dt>
+          <dd>Even with the schedule data available, the model kept planning trips around matches that didn’t exist, sometimes right after admitting the match wasn’t on the schedule.</dd>
+          <dt>How we solved it</dt>
+          <dd>A validation step checks every request against the official FIFA schedule before anything is generated. If the match isn’t real, the app stops and corrects the user (“France is playing in New York, not Boston”). Getting the model to reliably stop took many rounds of prompt iteration.
+          </dd>
         </dl>
+        <div class="cs-actions">
+          <a class="card-btn" href="https://github.com/SharanV99/ai-travel-concierge" target="_blank" rel="noopener">CODE ON GITHUB &nearr;</a>
+        </div>
       </dialog>
 
       <dialog class="case-study" id="cs-lastfm">
@@ -506,6 +526,6 @@
 
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

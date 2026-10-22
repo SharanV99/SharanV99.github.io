@@ -162,11 +162,17 @@
   window.addEventListener("resize", refreshTimeline);
   refreshTimeline();
 
-  /* ---------- 7. CASE STUDY POP-UPS ---------- */
-  document.querySelectorAll("[data-open]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var d = document.getElementById(btn.getAttribute("data-open"));
-      if (d && d.showModal) d.showModal();
+  /* ---------- 7. CASE STUDY POP-UPS ----------
+     Clicking anywhere on a project card (except its Code link) opens its case study. */
+  document.querySelectorAll(".project-card").forEach(function (card) {
+    var btn = card.querySelector("[data-open]");
+    if (!btn) return;
+    var d = document.getElementById(btn.getAttribute("data-open"));
+    if (!d || !d.showModal) return;
+    card.style.cursor = "pointer";
+    card.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return;            /* the Code link still goes to GitHub */
+      if (!d.open) d.showModal();
     });
   });
   document.querySelectorAll("dialog.case-study").forEach(function (d) {
