@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 
 <body>
@@ -319,8 +319,8 @@
 
         <!-- PROJECT 4 — MEPS capstone -->
         <article class="project-card reveal">
-          <div class="project-preview preview-fit preview-light">
-            <img src="projects/meps-dashboard.png" alt="Streamlit dashboard comparing three hospitalization models" loading="lazy" onerror="this.remove()" />
+          <div class="project-preview preview-fit preview-banner">
+            <img src="projects/meps-banner.png" alt="Hospitalization Intensity: Macro AUC 0.844, 50,733 adults, leak check" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="project-info">
             <div class="mono small muted">04 / PYTHON · XGBOOST</div>
@@ -441,8 +441,8 @@
       </dialog>
       <dialog class="case-study" id="cs-meps">
         <button class="cs-close" aria-label="Close">&times;</button>
-        <div class="cs-hero cs-hero-light">
-          <img src="projects/meps-dashboard.png" alt="Streamlit dashboard: model performance comparison" onerror="this.remove()" />
+        <div class="cs-hero cs-hero-banner">
+          <img src="projects/meps-banner.png" alt="Hospitalization Intensity summary banner with the leak check" onerror="this.remove()" />
         </div>
         <div class="mono small muted">04 / PYTHON · SCIKIT-LEARN · XGBOOST</div>
         <h3 class="cs-title">Predicting Hospitalization Intensity</h3>
@@ -453,7 +453,16 @@
           <dt>Problem</dt>
           <dd>Hospital stays are among the costliest events in U.S. healthcare, and one admission is very different from repeated admissions: median spending was about 37 times higher for adults admitted two or more times. So instead of a yes/no model, this project classifies adults into None, Single, or Multiple hospitalizations.</dd>
           <dt>What I built</dt>
-          <dd>Merged five Medical Expenditure Panel Survey (MEPS) file types for Panels 6–10 (2001–2006): person, condition, prescription, inpatient, and ER files. Built chronic-condition flags from ICD-9 codes and a 26-feature set covering demographics, insurance, health status, and utilization, for 50,733 adults. Compared elastic-net logistic regression, Random Forest, and XGBoost, and built a Streamlit dashboard to explore the results.</dd>
+          <dd>Merged five Medical Expenditure Panel Survey (MEPS) file types for Panels 6–10 (2001–2006): person, condition, prescription, inpatient, and ER files. Built chronic-condition flags from ICD-9 codes and a 26-feature set covering demographics, insurance, health status, and utilization, for 50,733 adults, excluding adults with cancer diagnoses. Compared elastic-net logistic regression, Random Forest, and XGBoost, and built a Streamlit dashboard to explore the results.
+            <figure class="cs-figure">
+              <img src="projects/meps-architecture.png" alt="Pipeline: raw MEPS files, R data pipeline, Python modeling, Streamlit dashboard" loading="lazy" />
+              <figcaption class="mono tiny">PIPELINE · RAW FILES TO DASHBOARD</figcaption>
+            </figure>
+            <figure class="cs-figure">
+              <img src="projects/meps-dashboard.png" alt="Streamlit dashboard: headline results" loading="lazy" />
+              <figcaption class="mono tiny">THE STREAMLIT DASHBOARD</figcaption>
+            </figure>
+          </dd>
           <dt>The catch</dt>
           <dd>Total healthcare spending looked like a strong predictor, but it already contains the cost of the hospital stays being predicted. Removing it dropped Macro AUC by 0.13–0.16, showing how much of the apparent accuracy was leakage. All final models exclude it. I also compared SMOTE against class weights for the 53-to-1 class imbalance; class weights caught far more repeat-admission patients (62.9% vs 38.3% recall).
             <figure class="cs-figure">
@@ -462,14 +471,14 @@
             </figure>
           </dd>
           <dt>Results</dt>
-          <dd>No single model won every metric. Random Forest ranked risk best (Macro AUC 0.84), while logistic regression caught the most repeat-admission patients (62.9% recall). Across all models, ER visits, number of medications, self-rated health, and age were the most consistent signals.
+          <dd>No single model won every metric. Random Forest ranked risk best (Macro AUC 0.84), logistic regression caught the most repeat-admission patients (62.9% recall), and XGBoost was strongest on single stays (54.5% recall). Across all models, ER visits, number of medications, self-rated health, and age were the most consistent signals.
             <figure class="cs-figure">
               <img src="projects/meps-shap.png" alt="Random Forest top 15 features by SHAP importance for each class" loading="lazy" />
               <figcaption class="mono tiny">RANDOM FOREST · TOP FEATURES BY SHAP IMPORTANCE</figcaption>
             </figure>
           </dd>
           <dt>Limitations</dt>
-          <dd>Predictors and outcome come from the same survey year, so this is risk stratification rather than advance prediction; the next step is predicting Year 2 admissions from Year 1 data. Survey weights were not applied, the Multiple class had only 167 test cases, and results come from a single train/test split.</dd>
+          <dd>Predictors and outcome come from the same survey year, so this is risk stratification rather than advance prediction; the next step is predicting Year 2 admissions from Year 1 data. Survey weights were not applied, the Multiple class had only 167 test cases, and results come from a single train/test split. About 70% of single-stay adults are female versus 54% overall, likely reflecting childbirth admissions; separating pregnancy-related stays from illness-related ones is a natural next step. The 2001–2006 data uses ICD-9 codes, so findings may not reflect current care patterns.</dd>
         </dl>
         <div class="cs-actions">
           <a class="card-btn" href="https://github.com/SharanV99/meps-hospitalization-risk" target="_blank" rel="noopener">CODE ON GITHUB &nearr;</a>
@@ -611,6 +620,6 @@
 
   </main>
 
-  <script src="script.js?v=11"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>
