@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 
 <body>
@@ -300,19 +300,38 @@
 
         <!-- PROJECT 3 — in progress -->
         <article class="project-card reveal">
-          <div class="project-preview">
-            <span class="status-pill"><span class="dot"></span>IN PROGRESS</span>
+          <div class="project-preview preview-fit preview-banner">
+            <img src="projects/lastfm-banner.png" alt="Last.fm Churn Propensity: AUC 0.82, 823 users, 171 targeted" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="project-info">
             <div class="mono small muted">03 / PYTHON · CHURN</div>
             <div class="project-title">Last.fm Churn Propensity</div>
-            <p class="card-result">A churn pipeline on real listening data. Data ingestion is built; modeling and targeting are next.</p>
+            <p class="card-result">A churn pipeline on real Last.fm data: behavioral churn labels, a leakage-safe model (AUC 0.82), and expected-value targeting, with a designed experiment to test it.</p>
             <div class="card-tags">
               <span class="card-tag">PYTHON</span><span class="card-tag">PANDAS</span><span class="card-tag">CHURN</span>
             </div>
             <div class="card-actions">
               <button class="card-btn" data-open="cs-lastfm">CASE STUDY</button>
               <a class="card-btn ghost-btn" href="https://github.com/SharanV99/lastfm-churn" target="_blank" rel="noopener">CODE &nearr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 4 — MEPS capstone -->
+        <article class="project-card reveal">
+          <div class="project-preview preview-fit preview-light">
+            <img src="projects/meps-dashboard.png" alt="Streamlit dashboard comparing three hospitalization models" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="project-info">
+            <div class="mono small muted">04 / PYTHON · XGBOOST</div>
+            <div class="project-title">Predicting Hospitalization Intensity</div>
+            <p class="card-result">Built a three-class hospitalization risk model on 50K+ U.S. adults, and caught a data leak that was inflating performance.</p>
+            <div class="card-tags">
+              <span class="card-tag">PYTHON</span><span class="card-tag">SHAP</span><span class="card-tag">STREAMLIT</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-btn" data-open="cs-meps">CASE STUDY</button>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/meps-hospitalization-risk" target="_blank" rel="noopener">CODE &nearr;</a>
             </div>
           </div>
         </article>
@@ -379,16 +398,75 @@
 
       <dialog class="case-study" id="cs-lastfm">
         <button class="cs-close" aria-label="Close">&times;</button>
-        <div class="mono small muted">03 / PYTHON · IN PROGRESS</div>
+        <div class="cs-hero cs-hero-banner">
+          <img src="projects/lastfm-banner.png" alt="Last.fm Churn Propensity summary: AUC 0.82, 823 users, 171 targeted" onerror="this.remove()" />
+        </div>
+        <div class="mono small muted">03 / PYTHON · CHURN</div>
         <h3 class="cs-title">Last.fm Churn Propensity</h3>
+        <div class="cs-tags">
+          <span class="card-tag">SOLO PROJECT</span><span class="card-tag">LAST.FM API</span><span class="card-tag">SCIKIT-LEARN</span><span class="card-tag">STATSMODELS</span>
+        </div>
         <dl class="cs-body">
           <dt>Question</dt>
-          <dd>Can listening history predict which users are about to go silent on the platform, and who is worth targeting to win back?</dd>
-          <dt>Done so far</dt>
-          <dd>Set up secure API access and wrote a paginated fetch script for the Last.fm recent-tracks API. Defined churn at the platform level (a user going silent overall) rather than per artist, so the model predicts real disengagement.</dd>
-          <dt>Next</dt>
-          <dd>Feature engineering, time-based train/test splits, probability calibration, expected-value targeting, and an experiment design with power analysis.</dd>
+          <dd>Can listening history predict which users are about to go silent on the platform, and which of them are actually worth contacting to win back?</dd>
+          <dt>Approach</dt>
+          <dd>Collected my own data from the Last.fm API: built a roster of about 900 real users by snowballing through the friends endpoint, then pulled each user’s listening history. Last.fm has no churn label, so I defined one: no plays in the last 45 days. Because churn is defined by recency, recency can’t be a feature; every feature comes from behavior before the 45-day window (listening volume, artist variety, gaps between sessions, and activity trend). Trained a logistic regression with balanced class weights (AUC 0.82).
+            <figure class="cs-figure">
+              <img src="projects/lastfm-features.png" alt="Logistic regression coefficients: longer gaps raise churn risk, artist variety and upward trend lower it" loading="lazy" />
+              <figcaption class="mono tiny">WHAT PREDICTS CHURN</figcaption>
+            </figure>
+          </dd>
+          <dt>Decision</dt>
+          <dd>Turned predictions into a targeting decision: for each user, expected value = churn probability × customer value × save rate − contact cost. Only users with positive expected value are contacted. The 18% save rate is benchmarked from a real telecom win-back campaign I ran at Sarada Technologies.
+            <figure class="cs-figure">
+              <img src="projects/lastfm-targeting.png" alt="Scatter of churn probability against customer value, highlighting users worth contacting" loading="lazy" />
+              <figcaption class="mono tiny">WHO’S WORTH A RETENTION NUDGE</figcaption>
+            </figure>
+          </dd>
+          <dt>Finding</dt>
+          <dd>Of 823 analyzed users, 171 are worth a retention nudge. A power analysis showed a valid A/B test needs about 295 users (148 per arm) for 80% power, so the targetable group is too small to prove the nudge works; I flag that rather than over-read a result.</dd>
+          <dt>Limitations</dt>
+          <dd>The roster was snowballed from an older seed account, so it over-represents early adopters and inflates the churn rate (about 80%). Silence on Last.fm is a proxy: someone may have stopped scrobbling while still listening elsewhere. Customer values are illustrative; the expected-value framework is the contribution.</dd>
         </dl>
+        <div class="cs-actions">
+          <a class="card-btn" href="https://github.com/SharanV99/lastfm-churn" target="_blank" rel="noopener">CODE ON GITHUB &nearr;</a>
+        </div>
+      </dialog>
+      <dialog class="case-study" id="cs-meps">
+        <button class="cs-close" aria-label="Close">&times;</button>
+        <div class="cs-hero cs-hero-light">
+          <img src="projects/meps-dashboard.png" alt="Streamlit dashboard: model performance comparison" onerror="this.remove()" />
+        </div>
+        <div class="mono small muted">04 / PYTHON · SCIKIT-LEARN · XGBOOST</div>
+        <h3 class="cs-title">Predicting Hospitalization Intensity</h3>
+        <div class="cs-tags">
+          <span class="card-tag">SOLO · NORTHEASTERN CAPSTONE</span><span class="card-tag">WINTER 2026</span><span class="card-tag">SHAP</span><span class="card-tag">STREAMLIT</span>
+        </div>
+        <dl class="cs-body">
+          <dt>Problem</dt>
+          <dd>Hospital stays are among the costliest events in U.S. healthcare, and one admission is very different from repeated admissions: median spending was about 37 times higher for adults admitted two or more times. So instead of a yes/no model, this project classifies adults into None, Single, or Multiple hospitalizations.</dd>
+          <dt>What I built</dt>
+          <dd>Merged five Medical Expenditure Panel Survey (MEPS) file types for Panels 6–10 (2001–2006): person, condition, prescription, inpatient, and ER files. Built chronic-condition flags from ICD-9 codes and a 26-feature set covering demographics, insurance, health status, and utilization, for 50,733 adults. Compared elastic-net logistic regression, Random Forest, and XGBoost, and built a Streamlit dashboard to explore the results.</dd>
+          <dt>The catch</dt>
+          <dd>Total healthcare spending looked like a strong predictor, but it already contains the cost of the hospital stays being predicted. Removing it dropped Macro AUC by 0.13–0.16, showing how much of the apparent accuracy was leakage. All final models exclude it. I also compared SMOTE against class weights for the 53-to-1 class imbalance; class weights caught far more repeat-admission patients (62.9% vs 38.3% recall).
+            <figure class="cs-figure">
+              <img src="projects/meps-leakage.png" alt="Macro AUC with and without total expenditure, for SMOTE and class weights" loading="lazy" />
+              <figcaption class="mono tiny">MACRO AUC WITH VS. WITHOUT THE LEAKY VARIABLE</figcaption>
+            </figure>
+          </dd>
+          <dt>Results</dt>
+          <dd>No single model won every metric. Random Forest ranked risk best (Macro AUC 0.84), while logistic regression caught the most repeat-admission patients (62.9% recall). Across all models, ER visits, number of medications, self-rated health, and age were the most consistent signals.
+            <figure class="cs-figure">
+              <img src="projects/meps-shap.png" alt="Random Forest top 15 features by SHAP importance for each class" loading="lazy" />
+              <figcaption class="mono tiny">RANDOM FOREST · TOP FEATURES BY SHAP IMPORTANCE</figcaption>
+            </figure>
+          </dd>
+          <dt>Limitations</dt>
+          <dd>Predictors and outcome come from the same survey year, so this is risk stratification rather than advance prediction; the next step is predicting Year 2 admissions from Year 1 data. Survey weights were not applied, the Multiple class had only 167 test cases, and results come from a single train/test split.</dd>
+        </dl>
+        <div class="cs-actions">
+          <a class="card-btn" href="https://github.com/SharanV99/meps-hospitalization-risk" target="_blank" rel="noopener">CODE ON GITHUB &nearr;</a>
+        </div>
       </dialog>
     </section>
 
@@ -526,6 +604,6 @@
 
   </main>
 
-  <script src="script.js?v=7"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>

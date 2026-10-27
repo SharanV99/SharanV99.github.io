@@ -409,3 +409,13 @@ body {
 .project-preview.preview-fit { background: #0e1117; }
 .project-preview.preview-fit img { object-fit: contain; padding: 14px; }
 .project-card:hover .project-preview.preview-fit img { transform: scale(1.03); }
+
+/* light background variant for screenshots of light-themed apps */
+.project-preview.preview-fit.preview-light { background: #ffffff; }
+.cs-hero.cs-hero-light:has(img) { background: #ffffff; }
+
+/* banner-style images: show the whole image on its own background */
+.project-preview.preview-fit.preview-banner { background: #f4f3ef; }
+.project-preview.preview-fit.preview-banner img { padding: 0; }
+.cs-hero.cs-hero-banner { aspect-ratio: auto; background: #f4f3ef; }
+.cs-hero.cs-hero-banner img { position: static; width: 100%; height: auto; object-fit: contain; }
