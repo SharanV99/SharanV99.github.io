@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=11" />
 </head>
 
 <body>
@@ -280,8 +280,8 @@
 
         <!-- PROJECT 2 -->
         <article class="project-card reveal">
-          <div class="project-preview preview-fit">
-            <img src="projects/genai-card.png" alt="AI Travel Concierge input screen: city, trip length, match and interests" loading="lazy" onerror="this.remove()" />
+          <div class="project-preview preview-fit preview-banner">
+            <img src="projects/genai-banner.png" alt="AI Travel Concierge: 16 host cities, 3 countries, 6,315 logged events" loading="lazy" onerror="this.remove()" />
             <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
           </div>
           <div class="project-info">
@@ -362,9 +362,8 @@
 
       <dialog class="case-study" id="cs-genai">
         <button class="cs-close" aria-label="Close">&times;</button>
-        <div class="cs-hero">
-          <img src="projects/genai-itinerary.png" alt="Generated day-by-day itinerary in the AI Travel Concierge app" onerror="this.remove()" />
-          <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
+        <div class="cs-hero cs-hero-banner">
+          <img src="projects/genai-banner.png" alt="AI Travel Concierge summary banner with the match check" onerror="this.remove()" />
         </div>
         <div class="mono small muted">02 / RAG · LANGCHAIN · KUBERNETES</div>
         <h3 class="cs-title">AI Travel Concierge</h3>
@@ -376,6 +375,14 @@
           <dd>The 2026 World Cup spanned 16 host cities across the USA, Canada, and Mexico. Fans with tickets often lacked the “last-mile” logistics: stadium transfer rules, safe neighborhoods, and transit routes. Generic travel sites didn’t have match-specific context, and standard AI chatbots tended to invent match dates and venues that didn’t exist.</dd>
           <dt>What we built</dt>
           <dd>An AI travel planner in Streamlit. Users pick a city, a match, and their interests, and a LangChain RAG pipeline with Llama 3 (via the Groq API) builds a day-by-day itinerary from a curated knowledge base of match schedules, stadium logistics, and city guides. Deployed with Docker and Kubernetes (Minikube), with ELK dashboards tracking user searches and API latency.
+            <figure class="cs-figure">
+              <img src="projects/genai-card.png" alt="App input screen: city, trip length, match stage, teams and interests" loading="lazy" />
+              <figcaption class="mono tiny">1 · THE USER PICKS A CITY, MATCH AND INTERESTS</figcaption>
+            </figure>
+            <figure class="cs-figure">
+              <img src="projects/genai-itinerary.png" alt="Generated day-by-day match itinerary in the app" loading="lazy" />
+              <figcaption class="mono tiny">2 · THE APP RETURNS A DAY-BY-DAY MATCH ITINERARY</figcaption>
+            </figure>
             <figure class="cs-figure">
               <img src="projects/genai-architecture.png" alt="Architecture: Streamlit front end, LangChain with Llama 3, validated against the official schedule" loading="lazy" />
               <figcaption class="mono tiny">ARCHITECTURE</figcaption>
@@ -604,6 +611,6 @@
 
   </main>
 
-  <script src="script.js?v=9"></script>
+  <script src="script.js?v=11"></script>
 </body>
 </html>
