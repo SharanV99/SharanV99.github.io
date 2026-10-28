@@ -604,12 +604,11 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
   background-image: var(--axis-ticks); background-size:100% 12px,100% 5px,100% 1px; background-repeat:no-repeat; background-position:0 0; }
 .lens-head { padding: 0 var(--pad-x); }
 .lens-marquee { display:flex; flex-direction:column; gap: 16px; }
-.lens-track { display:flex; gap: 16px; width: max-content; animation: lens-left 120s linear infinite; will-change: transform; }
-.lens-track.reverse { animation-name: lens-right; }
+.lens-track { display:flex; gap: 16px; width: max-content; }
 .lens-card { flex: 0 0 auto; height: clamp(220px, 22vw, 400px); aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden;
   border: 4px solid #d8c79c; background: #d8c79c; }
 .lens-card img { width:100%; height:100%; object-fit: cover; display:block; border-radius: 8px; }
 @keyframes lens-left  { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 8px)); } }
 @keyframes lens-right { from { transform: translateX(calc(-50% - 8px)); } to { transform: translateX(0); } }
-@media (prefers-reduced-motion: reduce) { .lens-track { animation: none; } .lens-marquee { overflow-x: auto; } }
+@media (prefers-reduced-motion: reduce) { .lens-marquee { overflow-x: auto; } }
 @media (max-width: 640px) { .lens-card { height: 200px; } .lens-marquee, .lens-track { gap: 10px; } }

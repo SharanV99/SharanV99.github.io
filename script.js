@@ -327,4 +327,48 @@
     size();
   })();
 
+  /* ---------- 10. PHOTO STRIP (Behind the Lens) ----------
+     Each row drifts slowly; a card that leaves one edge is moved to the
+     other end, so the moving layer stays small (Safari renders this
+     reliably, unlike one very wide animated strip). Pauses off-screen. */
+  (function () {
+    var rows = document.querySelectorAll(".lens-track");
+    if (!rows.length || reduceMotion) return;
+    var SPEED = 30;                                  // pixels per second
+    function gap(row) { return parseFloat(getComputedStyle(row).columnGap) || 16; }
+    var state = [].map.call(rows, function (row) {
+      return { row: row, dir: row.classList.contains("reverse") ? 1 : -1, x: 0 };
+    });
+    state.forEach(function (s) {                     // reverse row starts shifted so its left edge is filled
+      if (s.dir === 1) {
+        var lastC = s.row.lastElementChild, w = lastC.getBoundingClientRect().width + gap(s.row);
+        s.row.insertBefore(lastC, s.row.firstElementChild); s.x = -w;
+        s.row.style.transform = "translate3d(" + s.x + "px,0,0)";
+      }
+    });
+    var visible = false, last = null;
+    function step(t) {
+      if (!visible) { last = null; return; }
+      var dt = last ? Math.min((t - last) / 1000, 0.05) : 0; last = t;
+      state.forEach(function (s) {
+        s.x += s.dir * SPEED * dt;
+        var g = gap(s.row);
+        if (s.dir === -1) {                          // moving left: recycle the first card to the end
+          var first = s.row.firstElementChild, fw = first.getBoundingClientRect().width + g;
+          if (-s.x >= fw) { s.row.appendChild(first); s.x += fw; }
+        } else if (s.x >= 0) {                       // moving right: recycle the last card to the front
+          var lc = s.row.lastElementChild, lw = lc.getBoundingClientRect().width + g;
+          s.row.insertBefore(lc, s.row.firstElementChild); s.x -= lw;
+        }
+        s.row.style.transform = "translate3d(" + s.x.toFixed(2) + "px,0,0)";
+      });
+      requestAnimationFrame(step);
+    }
+    var section = document.getElementById("off-the-clock");
+    new IntersectionObserver(function (entries) {
+      var was = visible; visible = entries[0].isIntersecting;
+      if (visible && !was) requestAnimationFrame(step);
+    }, { rootMargin: "200px" }).observe(section);
+  })();
+
 })();
