@@ -571,3 +571,7 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 .cs-body dt { color: var(--accent) !important; }
 /* the "no margin on the last child" spacing rule was knocking the last pop-up (MEPS) off-centre */
 .projects-section > dialog.case-study { margin: auto !important; }
+
+/* ---------- 27. LIGHT GOLD FRAME: pop-up figures + hero photo ---------- */
+.cs-figure img { border: 1px solid #d8c79c !important; background-clip: padding-box; }
+.photo-frame { border: 1px solid #d8c79c !important; background-clip: padding-box; }
