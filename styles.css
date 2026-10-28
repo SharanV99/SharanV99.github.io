@@ -548,3 +548,11 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 /* gold labels: contact (Primary / University) and skill categories */
 .email-block > .mono.tiny { color: var(--accent) !important; }
 .skill-cat { color: var(--accent) !important; }
+.contact-grid { padding-bottom: 0 !important; }   /* was adding 44px extra under the contact content */
+/* optical spacing fixes so the visible gap matches above and below */
+.skills-grid .skill-row:first-child { padding-top: 0; }
+.skills-grid .skill-row:last-child { padding-bottom: 0; }
+.timeline-section { padding-bottom: calc(var(--sec-pad) - 20px) !important; }
+.timeline-section .tl-item:last-child .tl-note { margin-bottom: 0; }
+.about-section { padding-bottom: calc(var(--sec-pad) + 10px) !important; }
+.contact-grid { margin-bottom: calc(var(--sec-pad) + 10px); }
