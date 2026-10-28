@@ -442,18 +442,19 @@ body {
 .hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .hero > *:not(.hero-dots) { position: relative; z-index: 1; }
 
-/* ---------- 17. AXIS BORDER BREAKER (ruler ticks between sections) ---------- */
-.about-section, .timeline-section, .projects-section, .certs-section, .contact-section {
-  border-top: none !important; position: relative; }
-.about-section::before, .timeline-section::before, .projects-section::before,
-.certs-section::before, .contact-section::before {
-  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; pointer-events: none; opacity: .55;
-  background-image:
+/* ---------- 17. AXIS BORDER BREAKER (ruler ticks at every section break) ---------- */
+:root { --axis-ticks:
     repeating-linear-gradient(90deg, var(--accent) 0 1px, transparent 1px 48px),
     repeating-linear-gradient(90deg, var(--accent) 0 1px, transparent 1px 12px),
-    linear-gradient(var(--accent), var(--accent));
-  background-size: 100% 12px, 100% 5px, 100% 1px;
-  background-repeat: no-repeat; background-position: var(--pad-x) 0, var(--pad-x) 0, 0 0; }
+    linear-gradient(var(--accent), var(--accent)); }
+.sweep-section, .about-section, .timeline-section, .ticker-section, .projects-section,
+.certs-section, .contact-section, .footer { border-top: none !important; position: relative; }
+.sweep-section::before, .about-section::before, .timeline-section::before, .ticker-section::before,
+.projects-section::before, .certs-section::before, .contact-section::before, .footer::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; pointer-events: none; opacity: .55;
+  background-image: var(--axis-ticks);
+  background-size: 100% 12px, 100% 5px, 100% 1px; background-repeat: no-repeat; background-position: 0 0; }
+.footer::before { left: calc(-1 * var(--pad-x)); right: calc(-1 * var(--pad-x)); }
 
 /* ---------- 18. DARK SECTIONS: experience + credentials (deep black; variable kept as --navy) ---------- */
 .timeline-section, .certs-section { background: var(--navy); color: var(--on-dark); }
@@ -476,3 +477,36 @@ body {
 .project-card:hover .project-title { color: var(--accent); text-decoration: none; }
 .certs-section .cert-card:hover { border-color: var(--accent-light); box-shadow: 0 16px 36px rgba(0,0,0,.35); }
 .certs-section .cert-card:hover .cert-title { color: var(--accent-light); }
+
+
+/* ---------- 20. TIMELINE: centred columns, even spacing ---------- */
+.timeline-col { justify-self: center; width: fit-content; max-width: 100%; }
+.timeline-section { padding-top: clamp(70px, 7vw, 130px); padding-bottom: clamp(70px, 7vw, 130px); }
+.timeline-section .timeline-col > :last-child, .timeline-section .tl-item:last-child > :last-child { margin-bottom: 0 !important; }
+@media (max-width: 900px) { .timeline-col { justify-self: stretch; width: auto; } }
+
+/* gold labels in the dark sections (overrides the muted mono colour above) */
+.timeline-section .mono.section-label, .certs-section .mono.section-label { color: var(--accent-light) !important; }
+
+/* ---------- 21. JUSTIFIED PARAGRAPHS ---------- */
+.about-text p, .section-blurb, .contact-left p { text-align: justify; hyphens: none; -webkit-hyphens: none; }
+.cs-body dd { hyphens: none !important; -webkit-hyphens: none !important; }
+
+/* ---------- 22. EDGE RULERS (scroll with the page) ---------- */
+body { position: relative; }
+body::before, body::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 12px; z-index: 60; pointer-events: none; opacity: .55;
+  background-image:
+    repeating-linear-gradient(180deg, var(--accent) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(180deg, var(--accent) 0 1px, transparent 1px 12px),
+    linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat; }
+body::before { left: 0;  background-size: 12px 100%, 5px 100%, 1px 100%; background-position: 0 0, 0 0, 0 0; }
+body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; background-position: 100% 0, 100% 0, 100% 0; }
+@media (max-width: 640px) {
+  body::before, body::after { width: 6px; background-size: 6px 100%, 3px 100%, 1px 100%; }
+}
+
+/* social icons: ink by default (were showing browser link blue), gold on hover */
+.social-circle { color: var(--ink); }
+.social-circle:hover { color: var(--accent); border-color: var(--accent); }

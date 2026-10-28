@@ -264,16 +264,16 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && activeCard) closeCert(); });
   }
 
-  /* ---------- 9. LIVING HALFTONE (hero) ----------
-     A faint dot grid behind the hero. Dots near the mouse swell into
-     halftone dots in the accent colour and ease back when it moves away.
-     Touch screens and Reduce Motion get a static halftone corner instead. */
+  /* ---------- 9. HERO DOT GRID ----------
+     A permanent, even dot grid across the whole hero. Dots near the mouse
+     turn gold and grow slightly, then ease back when it moves away.
+     Touch screens and Reduce Motion simply show the grid. */
   (function () {
     var canvas = document.querySelector(".hero-dots");
     if (!canvas || !canvas.getContext) return;
     var hero = canvas.parentElement, ctx = canvas.getContext("2d");
-    var GAP = 22, BASE = 0.9, MAX = 5.6, REACH = 260;   /* REACH = size of the soft circle */
-    var staticMode = reduceMotion || window.matchMedia("(hover: none)").matches;
+    var GAP = 24, BASE = 1.3, GROW = 0.3, REACH = 260;   /* REACH = size of the soft gold circle */
+    var interactive = !reduceMotion && !window.matchMedia("(hover: none)").matches;
     var W = 0, H = 0, dpr = 1, mx = -9999, my = -9999, tx = -9999, ty = -9999, power = 0, target = 0, raf = null;
 
     function accent() {
@@ -289,35 +289,32 @@
     }
     function draw() {
       ctx.clearRect(0, 0, W, H);
-      var col = accent(), diag = Math.hypot(W, H);
+      var gold = accent(), k = 2 * REACH * REACH / 2.2;
       for (var x = GAP / 2; x < W; x += GAP) {
         for (var y = GAP / 2; y < H; y += GAP) {
-          var r = BASE, a = 0.35, hot = 0;
-          if (staticMode) {
-            var d = Math.min(1, Math.hypot(W - x, y) / diag);     // halftone toward top-right
-            r = Math.max(BASE * 0.7, MAX * Math.pow(1 - d, 2.4)); a = 0.45;
-          } else if (power > 0.01) {
-            var dist = Math.hypot(x - mx, y - my);
-            hot = power * Math.exp(-(dist * dist) / (2 * REACH * REACH / 2.2));
-            r = BASE + (MAX - BASE) * hot; a = 0.35 + 0.5 * hot;
-          }
-          ctx.globalAlpha = a;
-          ctx.fillStyle = hot > 0.18 ? col : "#b9b2a3";
+          var hot = 0;
+          if (power > 0.01) { var dx = x - mx, dy = y - my; hot = power * Math.exp(-(dx * dx + dy * dy) / k); }
+          var r = BASE * (1 + GROW * hot);
+          ctx.globalAlpha = 0.55; ctx.fillStyle = "#c4bdae";
           ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+          if (hot > 0.02) {                                  /* gold layer fades in near the cursor */
+            ctx.globalAlpha = Math.min(1, hot * 1.15); ctx.fillStyle = gold;
+            ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+          }
         }
       }
       ctx.globalAlpha = 1;
     }
     function tick() {
-      mx += (tx - mx) * 0.18; my += (ty - my) * 0.18;     // smooth follow
-      power += (target - power) * 0.12;                     // smooth fade in/out
+      mx += (tx - mx) * 0.18; my += (ty - my) * 0.18;
+      power += (target - power) * 0.12;
       draw();
       if (Math.abs(target - power) > 0.005 || Math.abs(tx - mx) > 0.5 || Math.abs(ty - my) > 0.5) {
         raf = requestAnimationFrame(tick);
       } else { raf = null; }
     }
     function kick() { if (!raf) raf = requestAnimationFrame(tick); }
-    if (!staticMode) {
+    if (interactive) {
       hero.addEventListener("mousemove", function (e) {
         var r = hero.getBoundingClientRect();
         tx = e.clientX - r.left; ty = e.clientY - r.top;
@@ -327,8 +324,6 @@
       hero.addEventListener("mouseleave", function () { target = 0; kick(); });
     }
     window.addEventListener("resize", size);
-    /* redraw when the accent colour changes */
-    new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["style"] });
     size();
   })();
 
