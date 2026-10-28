@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
 </head>
 
 <body>
@@ -259,53 +259,32 @@
 
       <div class="project-grid">
 
-        <!-- PROJECT 1 — card + case study (the case study text lives in the <dialog> further down) -->
-        <article class="project-card reveal">
-          <div class="project-preview">
-            <span class="mono tiny">ADD CHART / MAP</span>
-          </div>
-          <div class="project-info">
-            <div class="mono small muted">01 / R · LASSO</div>
-            <div class="project-title">Boston 311 Service Requests</div>
-            <p class="card-result">City Worker App requests were resolved 284 hours faster than consumer-facing channels.</p>
-            <div class="card-tags">
-              <span class="card-tag">R</span><span class="card-tag">REGRESSION</span><span class="card-tag">STATS</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn" data-open="cs-311">CASE STUDY</button>
-              <!-- Set the repo URL here -->
-              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- PROJECT 2 -->
+        <!-- PROJECT 1 — MEPS capstone -->
         <article class="project-card reveal">
           <div class="project-preview preview-fit preview-banner">
-            <img src="projects/genai-banner.png" alt="AI Travel Concierge: 16 host cities, 3 countries, 6,315 logged events" loading="lazy" onerror="this.remove()" />
-            <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
+            <img src="projects/meps-banner.png" alt="Hospitalization Intensity: Macro AUC 0.844, 50,733 adults, leak check" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="project-info">
-            <div class="mono small muted">02 / RAG · LLM</div>
-            <div class="project-title">AI Travel Concierge</div>
-            <p class="card-result">An AI travel planner built for 2026 World Cup fans, creating match-day itineraries.</p>
+            <div class="mono small muted"><span class="proj-num">01 /</span> PYTHON · XGBOOST</div>
+            <div class="project-title">Predicting Hospitalization Intensity</div>
+            <p class="card-result">Built a three-class hospitalization risk model on 50K+ U.S. adults, and caught a data leak that was inflating performance.</p>
             <div class="card-tags">
-              <span class="card-tag">RAG</span><span class="card-tag">KUBERNETES</span><span class="card-tag">ELK</span>
+              <span class="card-tag">PYTHON</span><span class="card-tag">SHAP</span><span class="card-tag">STREAMLIT</span>
             </div>
             <div class="card-actions">
-              <button class="card-btn" data-open="cs-genai">CASE STUDY</button>
-              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/ai-travel-concierge" target="_blank" rel="noopener">CODE &nearr;</a>
+              <button class="card-btn" data-open="cs-meps">CASE STUDY</button>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/meps-hospitalization-risk" target="_blank" rel="noopener">CODE &nearr;</a>
             </div>
           </div>
         </article>
 
-        <!-- PROJECT 3 — in progress -->
+        <!-- PROJECT 2 — Last.fm -->
         <article class="project-card reveal">
           <div class="project-preview preview-fit preview-banner">
             <img src="projects/lastfm-banner.png" alt="Last.fm Churn Propensity: AUC 0.82, 823 users, 171 targeted" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="project-info">
-            <div class="mono small muted">03 / PYTHON · CHURN</div>
+            <div class="mono small muted"><span class="proj-num">02 /</span> PYTHON · CHURN</div>
             <div class="project-title">Last.fm Churn Propensity</div>
             <p class="card-result">A churn pipeline on real Last.fm data: behavioral churn labels, a leakage-safe model (AUC 0.82), and expected-value targeting, with a designed experiment to test it.</p>
             <div class="card-tags">
@@ -318,21 +297,42 @@
           </div>
         </article>
 
-        <!-- PROJECT 4 — MEPS capstone -->
+        <!-- PROJECT 3 — AI Travel Concierge -->
         <article class="project-card reveal">
           <div class="project-preview preview-fit preview-banner">
-            <img src="projects/meps-banner.png" alt="Hospitalization Intensity: Macro AUC 0.844, 50,733 adults, leak check" loading="lazy" onerror="this.remove()" />
+            <img src="projects/genai-banner.png" alt="AI Travel Concierge: 16 host cities, 3 countries, 6,315 logged events" loading="lazy" onerror="this.remove()" />
+            <span class="mono tiny">ADD ITINERARY SCREENSHOT</span>
           </div>
           <div class="project-info">
-            <div class="mono small muted">04 / PYTHON · XGBOOST</div>
-            <div class="project-title">Predicting Hospitalization Intensity</div>
-            <p class="card-result">Built a three-class hospitalization risk model on 50K+ U.S. adults, and caught a data leak that was inflating performance.</p>
+            <div class="mono small muted"><span class="proj-num">03 /</span> RAG · LLM</div>
+            <div class="project-title">AI Travel Concierge</div>
+            <p class="card-result">An AI travel planner built for 2026 World Cup fans, creating match-day itineraries.</p>
             <div class="card-tags">
-              <span class="card-tag">PYTHON</span><span class="card-tag">SHAP</span><span class="card-tag">STREAMLIT</span>
+              <span class="card-tag">RAG</span><span class="card-tag">KUBERNETES</span><span class="card-tag">ELK</span>
             </div>
             <div class="card-actions">
-              <button class="card-btn" data-open="cs-meps">CASE STUDY</button>
-              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/meps-hospitalization-risk" target="_blank" rel="noopener">CODE &nearr;</a>
+              <button class="card-btn" data-open="cs-genai">CASE STUDY</button>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/ai-travel-concierge" target="_blank" rel="noopener">CODE &nearr;</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 1 — card + case study (the case study text lives in the <dialog> further down) -->
+        <article class="project-card reveal">
+          <div class="project-preview">
+            <span class="mono tiny">ADD CHART / MAP</span>
+          </div>
+          <div class="project-info">
+            <div class="mono small muted"><span class="proj-num">04 /</span> R · LASSO</div>
+            <div class="project-title">Boston 311 Service Requests</div>
+            <p class="card-result">City Worker App requests were resolved 284 hours faster than consumer-facing channels.</p>
+            <div class="card-tags">
+              <span class="card-tag">R</span><span class="card-tag">REGRESSION</span><span class="card-tag">STATS</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-btn" data-open="cs-311">CASE STUDY</button>
+              <!-- Set the repo URL here -->
+              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
             </div>
           </div>
         </article>
@@ -347,7 +347,7 @@
            ============================================================ -->
       <dialog class="case-study" id="cs-311">
         <button class="cs-close" aria-label="Close">&times;</button>
-        <div class="mono small muted">01 / R · LASSO REGRESSION</div>
+        <div class="mono small muted"><span class="proj-num">04 /</span> R · LASSO REGRESSION</div>
         <h3 class="cs-title">Boston 311 Service Requests</h3>
         <dl class="cs-body">
           <dt>Question</dt>
@@ -366,7 +366,7 @@
         <div class="cs-hero cs-hero-banner">
           <img src="projects/genai-banner.png" alt="AI Travel Concierge summary banner with the match check" onerror="this.remove()" />
         </div>
-        <div class="mono small muted">02 / RAG · LANGCHAIN · KUBERNETES</div>
+        <div class="mono small muted"><span class="proj-num">03 /</span> RAG · LANGCHAIN · KUBERNETES</div>
         <h3 class="cs-title">AI Travel Concierge</h3>
         <div class="cs-tags">
           <span class="card-tag">TEAM PROJECT · NORTHEASTERN</span><span class="card-tag">FALL 2025</span><span class="card-tag">LLAMA 3 · GROQ</span><span class="card-tag">STREAMLIT</span>
@@ -409,7 +409,7 @@
         <div class="cs-hero cs-hero-banner">
           <img src="projects/lastfm-banner.png" alt="Last.fm Churn Propensity summary: AUC 0.82, 823 users, 171 targeted" onerror="this.remove()" />
         </div>
-        <div class="mono small muted">03 / PYTHON · CHURN</div>
+        <div class="mono small muted"><span class="proj-num">02 /</span> PYTHON · CHURN</div>
         <h3 class="cs-title">Last.fm Churn Propensity</h3>
         <div class="cs-tags">
           <span class="card-tag">SOLO PROJECT</span><span class="card-tag">LAST.FM API</span><span class="card-tag">SCIKIT-LEARN</span><span class="card-tag">STATSMODELS</span>
@@ -445,7 +445,7 @@
         <div class="cs-hero cs-hero-banner">
           <img src="projects/meps-banner.png" alt="Hospitalization Intensity summary banner with the leak check" onerror="this.remove()" />
         </div>
-        <div class="mono small muted">04 / PYTHON · SCIKIT-LEARN · XGBOOST</div>
+        <div class="mono small muted"><span class="proj-num">01 /</span> PYTHON · SCIKIT-LEARN · XGBOOST</div>
         <h3 class="cs-title">Predicting Hospitalization Intensity</h3>
         <div class="cs-tags">
           <span class="card-tag">SOLO · NORTHEASTERN CAPSTONE</span><span class="card-tag">WINTER 2026</span><span class="card-tag">SHAP</span><span class="card-tag">STREAMLIT</span>
@@ -621,6 +621,6 @@
 
   </main>
 
-  <script src="script.js?v=21"></script>
+  <script src="script.js?v=22"></script>
 </body>
 </html>

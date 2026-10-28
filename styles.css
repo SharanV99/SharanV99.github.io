@@ -556,3 +556,6 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 .timeline-section .tl-item:last-child .tl-note { margin-bottom: 0; }
 .about-section { padding-bottom: calc(var(--sec-pad) + 10px) !important; }
 .contact-grid { margin-bottom: calc(var(--sec-pad) + 10px); }
+
+/* gold project number (01 / 02 / ...) on cards and in case studies */
+.proj-num { color: var(--accent); }
