@@ -575,3 +575,23 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 /* ---------- 27. LIGHT GOLD FRAME: pop-up figures + hero photo ---------- */
 .cs-figure img { border: 1px solid #d8c79c !important; background-clip: padding-box; }
 .photo-frame { border: 1px solid #d8c79c !important; background-clip: padding-box; }
+
+/* ---------- 28. NITPICKS ---------- */
+/* 1. hero photo frame a little thicker */
+.photo-frame { border-width: 2px !important; }
+
+/* 2. "Open for work" dot: green LED with a slow pulse */
+.status-pill .dot { background: #22c55e !important; box-shadow: 0 0 0 0 rgba(34,197,94,.6), 0 0 6px rgba(34,197,94,.9);
+  animation: led-pulse 2.4s ease-in-out infinite; }
+@keyframes led-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.55), 0 0 6px rgba(34,197,94,.9); }
+  50%      { box-shadow: 0 0 0 5px rgba(34,197,94,0), 0 0 10px rgba(34,197,94,1); } }
+@media (prefers-reduced-motion: reduce) { .status-pill .dot { animation: none; } }
+
+/* 4. section intro paragraph centred against the big heading (Featured Work, Credentials) */
+.section-head { align-items: center; }
+@media (max-width: 640px) { .section-head { align-items: flex-start; } }
+
+/* 5. tags sit right above the buttons on every card; spare space goes above the tags */
+.project-info .card-tags { margin-top: auto; }
+.project-info .card-actions { margin-top: 0; padding-top: 18px; }
