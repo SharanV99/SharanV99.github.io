@@ -534,7 +534,7 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 .about-grid, .timeline-grid, .contact-grid, .cert-grid, .project-grid { margin-top: 0; }
 .about-text > :last-child, .skills-grid > :last-child, .contact-left > :last-child, .contact-right > :last-child,
 .timeline-col > :last-child { margin-bottom: 0 !important; }
-.projects-section > :last-child, .certs-section > :last-child { margin-bottom: 0 !important; }
+.projects-section > :last-child:not(dialog), .certs-section > :last-child:not(dialog) { margin-bottom: 0 !important; }
 /* footer: equal space above and below, smaller than a full section */
 .footer { padding-top: var(--foot-pad) !important; }
 .footer-bottom { padding: 16px 0 var(--foot-pad) !important; }
@@ -565,3 +565,9 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
   background-image: radial-gradient(rgba(180, 172, 156, .45) 1.2px, transparent 1.4px);
   background-size: 24px 24px; background-position: 12px 12px; }
 .projects-section .project-card { position: relative; z-index: 1; }
+
+/* ---------- 26. CASE STUDIES: same size for every project, gold section titles ---------- */
+.case-study { height: min(90vh, 1400px); max-height: 90vh; }
+.cs-body dt { color: var(--accent) !important; }
+/* the "no margin on the last child" spacing rule was knocking the last pop-up (MEPS) off-centre */
+.projects-section > dialog.case-study { margin: auto !important; }
