@@ -264,4 +264,72 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && activeCard) closeCert(); });
   }
 
+  /* ---------- 9. LIVING HALFTONE (hero) ----------
+     A faint dot grid behind the hero. Dots near the mouse swell into
+     halftone dots in the accent colour and ease back when it moves away.
+     Touch screens and Reduce Motion get a static halftone corner instead. */
+  (function () {
+    var canvas = document.querySelector(".hero-dots");
+    if (!canvas || !canvas.getContext) return;
+    var hero = canvas.parentElement, ctx = canvas.getContext("2d");
+    var GAP = 22, BASE = 0.9, MAX = 5.6, REACH = 260;   /* REACH = size of the soft circle */
+    var staticMode = reduceMotion || window.matchMedia("(hover: none)").matches;
+    var W = 0, H = 0, dpr = 1, mx = -9999, my = -9999, tx = -9999, ty = -9999, power = 0, target = 0, raf = null;
+
+    function accent() {
+      return getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#b8902f";
+    }
+    function size() {
+      var r = hero.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var col = accent(), diag = Math.hypot(W, H);
+      for (var x = GAP / 2; x < W; x += GAP) {
+        for (var y = GAP / 2; y < H; y += GAP) {
+          var r = BASE, a = 0.35, hot = 0;
+          if (staticMode) {
+            var d = Math.min(1, Math.hypot(W - x, y) / diag);     // halftone toward top-right
+            r = Math.max(BASE * 0.7, MAX * Math.pow(1 - d, 2.4)); a = 0.45;
+          } else if (power > 0.01) {
+            var dist = Math.hypot(x - mx, y - my);
+            hot = power * Math.exp(-(dist * dist) / (2 * REACH * REACH / 2.2));
+            r = BASE + (MAX - BASE) * hot; a = 0.35 + 0.5 * hot;
+          }
+          ctx.globalAlpha = a;
+          ctx.fillStyle = hot > 0.18 ? col : "#b9b2a3";
+          ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    function tick() {
+      mx += (tx - mx) * 0.18; my += (ty - my) * 0.18;     // smooth follow
+      power += (target - power) * 0.12;                     // smooth fade in/out
+      draw();
+      if (Math.abs(target - power) > 0.005 || Math.abs(tx - mx) > 0.5 || Math.abs(ty - my) > 0.5) {
+        raf = requestAnimationFrame(tick);
+      } else { raf = null; }
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(tick); }
+    if (!staticMode) {
+      hero.addEventListener("mousemove", function (e) {
+        var r = hero.getBoundingClientRect();
+        tx = e.clientX - r.left; ty = e.clientY - r.top;
+        if (mx < -999) { mx = tx; my = ty; }
+        target = 1; kick();
+      });
+      hero.addEventListener("mouseleave", function () { target = 0; kick(); });
+    }
+    window.addEventListener("resize", size);
+    /* redraw when the accent colour changes */
+    new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["style"] });
+    size();
+  })();
+
 })();

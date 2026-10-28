@@ -419,3 +419,60 @@ body {
 .project-preview.preview-fit.preview-banner img { padding: 0; }
 .cs-hero.cs-hero-banner { aspect-ratio: auto; background: #f4f3ef; }
 .cs-hero.cs-hero-banner img { position: static; width: 100%; height: auto; object-fit: contain; }
+
+
+/* ---------- 15. GOLD ACCENT ---------- */
+:root { --accent: #b8902f; --accent-light: #d4a55a; --navy: #141310; --on-dark: #f3ead8; --on-dark-muted: #a8a294;
+        --dark-line: rgba(212,165,90,.25); }
+.section-label, .hero-meta .muted, .focus-label { color: var(--accent) !important; }
+.logo, .amp { color: var(--accent) !important; }
+.status-pill { border-color: var(--accent) !important; color: var(--accent) !important; }
+.status-pill .dot { background: var(--accent) !important; }
+.hero .tag { border-color: var(--accent); color: var(--accent); }
+.hero-cta-row .pill-btn:first-child { background: var(--accent); border-color: var(--accent); color: #fff; }
+.hero-cta-row .pill-btn:first-child:hover { filter: brightness(1.08); }
+.pill-btn:hover, .big-pill-btn:hover { border-color: var(--accent); color: var(--accent); }
+.card-btn:not(.ghost-btn):hover { background: var(--accent); border-color: var(--accent); opacity: 1; }
+.ghost-btn:hover { border-color: var(--accent) !important; }
+.menu-link:hover { color: var(--accent-light); opacity: 1; }
+::selection { background: rgba(184,144,47,.25); }
+
+/* ---------- 16. LIVING HALFTONE (hero) ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.hero > *:not(.hero-dots) { position: relative; z-index: 1; }
+
+/* ---------- 17. AXIS BORDER BREAKER (ruler ticks between sections) ---------- */
+.about-section, .timeline-section, .projects-section, .certs-section, .contact-section {
+  border-top: none !important; position: relative; }
+.about-section::before, .timeline-section::before, .projects-section::before,
+.certs-section::before, .contact-section::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; pointer-events: none; opacity: .55;
+  background-image:
+    repeating-linear-gradient(90deg, var(--accent) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, var(--accent) 0 1px, transparent 1px 12px),
+    linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 12px, 100% 5px, 100% 1px;
+  background-repeat: no-repeat; background-position: var(--pad-x) 0, var(--pad-x) 0, 0 0; }
+
+/* ---------- 18. DARK SECTIONS: experience + credentials (deep black; variable kept as --navy) ---------- */
+.timeline-section, .certs-section { background: var(--navy); color: var(--on-dark); }
+.timeline-section::before, .certs-section::before { opacity: .8; }
+.timeline-section .section-label, .certs-section .section-label { color: var(--accent-light) !important; }
+.timeline-section .tl-title, .certs-section .big-head, .certs-section .cert-title { color: var(--on-dark); }
+.timeline-section .tl-sub { color: #dcd6c9; }
+.timeline-section .tl-note, .timeline-section .mono, .certs-section .section-blurb,
+.certs-section .cert-issuer, .certs-section .mono { color: var(--on-dark-muted) !important; }
+.timeline-section .tl-node { border-color: var(--accent-light); background: var(--navy); }
+.timeline-section .tl-line-dyn { background: var(--dark-line) !important; }
+.certs-section .cert-card { background: rgba(255,255,255,.035); border-color: var(--dark-line); }
+.certs-section .cert-head { border-color: var(--dark-line); }
+.certs-section .cert-card .card-btn { background: var(--accent-light); border-color: var(--accent-light); color: var(--navy); }
+.certs-section .cert-card .card-btn:hover { background: var(--on-dark); border-color: var(--on-dark); }
+
+/* ---------- 19. GOLD CARD HOVER ---------- */
+.project-card, .cert-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.project-card:hover, .cert-card:hover { border-color: var(--accent); box-shadow: 0 16px 36px rgba(184,144,47,.16); }
+.project-card:hover .project-title { color: var(--accent); text-decoration: none; }
+.certs-section .cert-card:hover { border-color: var(--accent-light); box-shadow: 0 16px 36px rgba(0,0,0,.35); }
+.certs-section .cert-card:hover .cert-title { color: var(--accent-light); }
