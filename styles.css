@@ -523,3 +523,28 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 12px; pointer-events: none; opacity: .55;
   background-image: var(--axis-ticks);
   background-size: 100% 12px, 100% 5px, 100% 1px; background-repeat: no-repeat; background-position: 0 100%; }
+
+/* ---------- 24. ONE SPACING RULE FOR EVERY SECTION ---------- */
+:root { --sec-pad: clamp(72px, 7vw, 120px); --foot-pad: 48px; }
+.about-section, .timeline-section, .projects-section, .certs-section {
+  padding-top: var(--sec-pad) !important; padding-bottom: var(--sec-pad) !important; }
+.contact-section { padding-top: var(--sec-pad) !important; padding-bottom: 0 !important; }
+.contact-grid { margin-bottom: var(--sec-pad); }
+/* no stray margins on the first/last thing inside a section */
+.about-grid, .timeline-grid, .contact-grid, .cert-grid, .project-grid { margin-top: 0; }
+.about-text > :last-child, .skills-grid > :last-child, .contact-left > :last-child, .contact-right > :last-child,
+.timeline-col > :last-child { margin-bottom: 0 !important; }
+.projects-section > :last-child, .certs-section > :last-child { margin-bottom: 0 !important; }
+/* footer: equal space above and below, smaller than a full section */
+.footer { padding-top: var(--foot-pad) !important; }
+.footer-bottom { padding: 16px 0 var(--foot-pad) !important; }
+@media (max-width: 640px) { :root { --sec-pad: 56px; --foot-pad: 36px; } }
+
+/* back-to-top: ink arrow (was showing link purple), gold on hover */
+.back-to-top, .btt-circle { color: var(--ink); }
+.back-to-top:hover .btt-circle { color: var(--accent); border-color: var(--accent); }
+.footer-nav a:hover { color: var(--accent); }
+
+/* gold labels: contact (Primary / University) and skill categories */
+.email-block > .mono.tiny { color: var(--accent) !important; }
+.skill-cat { color: var(--accent) !important; }
