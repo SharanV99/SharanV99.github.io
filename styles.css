@@ -510,3 +510,16 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 /* social icons: ink by default (were showing browser link blue), gold on hover */
 .social-circle { color: var(--ink); }
 .social-circle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- 23. AXIS AT THE TOP AND BOTTOM OF THE PAGE ---------- */
+/* top: replaces the top bar's grey line; it is sticky, so it frames the top of the screen */
+.topbar { border-bottom: none !important; }
+.topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 12px; pointer-events: none; opacity: .55;
+  background-image: var(--axis-ticks);
+  background-size: 100% 12px, 100% 5px, 100% 1px; background-repeat: no-repeat; background-position: 0 0; }
+/* bottom: the line sits on the very bottom edge with the ticks pointing up */
+.contact-section::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 12px; pointer-events: none; opacity: .55;
+  background-image: var(--axis-ticks);
+  background-size: 100% 12px, 100% 5px, 100% 1px; background-repeat: no-repeat; background-position: 0 100%; }
