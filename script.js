@@ -334,7 +334,7 @@
   (function () {
     var rows = document.querySelectorAll(".lens-track");
     if (!rows.length || reduceMotion) return;
-    var SPEED = 30;                                  // pixels per second
+    var SPEED = 42;                                  // pixels per second (raise for faster)
     function gap(row) { return parseFloat(getComputedStyle(row).columnGap) || 16; }
     var state = [].map.call(rows, function (row) {
       return { row: row, dir: row.classList.contains("reverse") ? 1 : -1, x: 0 };
