@@ -596,8 +596,3 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 .project-info .card-tags { margin-top: auto; }
 .project-info .card-actions { margin-top: 0; padding-top: 18px; }
 
-/* ---------- 29. SIGNATURE NAME in the top bar ---------- */
-.logo { font-family: 'Herr Von Muellerhoff', cursive !important; font-weight: 400 !important; font-size: 40px !important;
-        letter-spacing: 0 !important; line-height: 1; padding: 2px 6px 0 0; color: var(--accent) !important; }
-@media (max-width: 640px) { .logo { font-size: 32px !important; } }
-.topbar { padding-top: 9px !important; padding-bottom: 9px !important; }   /* keeps the bar slim with the taller signature */
