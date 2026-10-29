@@ -371,4 +371,12 @@
     }, { rootMargin: "200px" }).observe(section);
   })();
 
+  /* ---------- 11. PHOTO STRIP: block the right-click menu on the photos ---------- */
+  var lens = document.getElementById("off-the-clock");
+  if (lens) {
+    lens.addEventListener("contextmenu", function (e) {
+      if (e.target.closest(".lens-marquee")) e.preventDefault();
+    });
+  }
+
 })();

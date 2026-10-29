@@ -612,3 +612,12 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 @keyframes lens-right { from { transform: translateX(calc(-50% - 8px)); } to { transform: translateX(0); } }
 @media (prefers-reduced-motion: reduce) { .lens-marquee { overflow-x: auto; } }
 @media (max-width: 640px) { .lens-card { height: 200px; } .lens-marquee, .lens-track { gap: 10px; } }
+
+/* ---------- 31. CENTRE A LONE LAST PROJECT CARD (3-column desktop only) ---------- */
+@media (min-width: 901px) {
+  .project-grid > .project-card:last-of-type:nth-of-type(3n+1) { grid-column: 2; }
+}
+
+/* ---------- 32. PHOTO STRIP: discourage saving (no right-click, drag or long-press save) ---------- */
+.lens-card { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.lens-card img { pointer-events: none; -webkit-user-drag: none; user-drag: none; }
