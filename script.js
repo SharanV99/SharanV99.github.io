@@ -285,7 +285,36 @@
       W = r.width; H = r.height;
       canvas.width = W * dpr; canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      measureClear();
       draw();
+    }
+    /* keep the grid clear around small text so it stays readable */
+    var clear = [];
+    function measureClear() {
+      var h = hero.getBoundingClientRect(), PAD = 6, boxes = [];
+      /* pills and tags: their own outline */
+      [].forEach.call(hero.querySelectorAll(".tag, .status-pill"), function (el) {
+        var r = el.getBoundingClientRect(); boxes.push(r);
+      });
+      /* small text: only the actual lines of text, not the whole block */
+      [].forEach.call(hero.querySelectorAll(".mono"), function (el) {
+        if (el.closest(".tag, .status-pill")) return;
+        var range = document.createRange(); range.selectNodeContents(el);
+        [].forEach.call(range.getClientRects(), function (r) { if (r.width > 2) boxes.push(r); });
+      });
+      clear = boxes.map(function (r) {
+        return [r.left - h.left - PAD, r.top - h.top - PAD, r.right - h.left + PAD, r.bottom - h.top + PAD];
+      });
+    }
+    function fade(x, y) {                 // 0 inside a text box, easing to 1 within 14px of its edge
+      var f = 1;
+      for (var i = 0; i < clear.length; i++) {
+        var b = clear[i];
+        var dx = Math.max(b[0] - x, 0, x - b[2]), dy = Math.max(b[1] - y, 0, y - b[3]);
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 10) f = Math.min(f, d / 10);
+      }
+      return f;
     }
     function draw() {
       ctx.clearRect(0, 0, W, H);
@@ -294,11 +323,13 @@
         for (var y = GAP / 2; y < H; y += GAP) {
           var hot = 0;
           if (power > 0.01) { var dx = x - mx, dy = y - my; hot = power * Math.exp(-(dx * dx + dy * dy) / k); }
+          var f = clear.length ? fade(x, y) : 1;
+          if (f <= 0.02) continue;
           var r = BASE * (1 + GROW * hot);
-          ctx.globalAlpha = 0.55; ctx.fillStyle = "#c4bdae";
+          ctx.globalAlpha = 0.55 * f; ctx.fillStyle = "#c4bdae";
           ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
           if (hot > 0.02) {                                  /* gold layer fades in near the cursor */
-            ctx.globalAlpha = Math.min(1, hot * 1.15); ctx.fillStyle = gold;
+            ctx.globalAlpha = Math.min(1, hot * 1.15) * f; ctx.fillStyle = gold;
             ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
           }
         }
@@ -325,6 +356,8 @@
     }
     window.addEventListener("resize", size);
     size();
+    window.addEventListener("load", size);
+    setTimeout(size, 1200);
   })();
 
   /* ---------- 10. PHOTO STRIP (Behind the Lens) ----------
