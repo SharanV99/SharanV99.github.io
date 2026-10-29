@@ -1,92 +1,58 @@
-# Sharan Venkatesh — Portfolio
+# Sharan Venkatesh · Data Analyst Portfolio
 
-A single-page static portfolio website. No frameworks, no build step — just
-HTML, CSS, and JavaScript. Hosts free on GitHub Pages.
+**Live site → [sharanv99.github.io](https://sharanv99.github.io)**
 
-## Files
+Personal portfolio of Sharan Venkatesh, a data analyst in Seattle with a Master's in Analytics (Applied Machine Intelligence) from Northeastern University. The site collects my analytics projects, experience and certifications, plus some photography.
 
-| File          | What it holds                                                        |
-| ------------- | -------------------------------------------------------------------- |
-| `index.html`  | All the page content (your text, projects, certs, links)             |
-| `styles.css`  | All the styling (colors, fonts, layout, mobile behavior)             |
-| `script.js`   | All the animations and interactivity (you rarely need to touch this) |
-| `favicon.svg` | The little icon in the browser tab                                   |
-| `resume.pdf`  | **You add this** — your resume, so the "RESUME" button works         |
+## Featured projects
 
-## To preview the site
+| # | Project | What it shows | Code |
+|---|---|---|---|
+| 01 | **Predicting Hospitalization Intensity** | Three-class risk model on 50,733 U.S. adults (MEPS), including catching and removing a data leak that inflated performance | [meps-hospitalization-risk](https://github.com/SharanV99/meps-hospitalization-risk) |
+| 02 | **Last.fm Churn Propensity** | Churn pipeline on real Last.fm listening data with a leakage-safe model and expected-value targeting | [lastfm-churn](https://github.com/SharanV99/lastfm-churn) |
+| 03 | **AI Travel Concierge** | RAG travel planner for 2026 World Cup fans, with a schedule check that blocks answers about matches that don't exist | [ai-travel-concierge](https://github.com/SharanV99/ai-travel-concierge) |
+| 04 | **Boston 311 Service Requests** | 1.3M city service requests in R: the average response time fell, but the typical request didn't get faster | [boston-311-analysis](https://github.com/SharanV99/boston-311-analysis) |
 
-Double-click `index.html` — it opens in your browser. That's the real site.
+Each project card opens a short case study on the site: the question, approach, findings, limitations and charts.
 
----
+## Built with
 
-## How to make common edits
+Plain **HTML, CSS and JavaScript**, with no frameworks or build step, hosted on **GitHub Pages**.
 
-All content edits happen in **`index.html`**. Each section is marked with a
-big comment like `<!-- ===== 6. PROJECTS ===== -->` so you can find it fast.
+A few details:
+- Case-study pop-ups use the native `<dialog>` element
+- The hero dot grid is drawn on a `<canvas>` and reacts to the mouse
+- The photo strip recycles cards as they move, so it stays smooth on every browser
+- Layout and spacing are responsive from phones to large monitors, and motion respects the system's Reduce Motion setting
 
-### Change any text
-Find the words in `index.html` and type over them. Save, refresh the browser.
+## Structure
 
-### Add your photo
-1. Put your photo in the folder, named e.g. `photo.jpg`.
-2. In `index.html`, find `<!-- PHOTO PLACEHOLDER -->`.
-3. Replace the `<div class="photo-frame">…</div>` contents with:
-   `<div class="photo-frame"><img src="photo.jpg" alt="Sharan Venkatesh" /></div>`
+```
+index.html          all page content
+styles.css          styles
+script.js           interactions (menu, pop-ups, dot grid, photo strip)
+projects/           project banners and case-study charts
+photos/             Behind the Lens photography
+badges/             certification badges
+certificates/       certificate images
+resume.pdf          latest resume
+```
 
-### Add your resume (makes the RESUME button work)
-Put your resume in the folder named exactly `resume.pdf`. Done.
+## Run locally
 
-### Set your GitHub and project links
-- Find each `<a href="#" class="project-card"` and replace `#` with the repo URL.
-- Find `VIEW ALL ON GITHUB` and set its `href` to your GitHub profile.
-- Find the GitHub social link (`data-icon="github"`) and set its `href`.
+No setup needed. Clone the repo and open `index.html` in a browser.
 
-### Add a project preview image
-1. Put the image in the folder (e.g. `project1.png`).
-2. In the matching card, replace the `<div class="project-preview">…</div>`
-   contents with: `<div class="project-preview"><img src="project1.png" alt="…"/></div>`
+```bash
+git clone https://github.com/SharanV99/SharanV99.github.io.git
+cd SharanV99.github.io
+open index.html
+```
 
-### Add a new certificate
-In the `7. CERTIFICATIONS` section, copy one whole `<div class="cert-card">…</div>`
-block, paste it, and change the category, title, issuer, and the `YEAR —` slot.
+## Contact
 
-### Add a new project or timeline entry
-Same idea: copy one `<article class="project-card">` or `<div class="tl-item">`
-block, paste it, edit the text.
+- Email: sharanv05@gmail.com
+- LinkedIn: [linkedin.com/in/sharanv05](https://www.linkedin.com/in/sharanv05)
 
-### Fill in certificate years
-In each cert card, replace `YEAR —` with the real year (e.g. `2025 —`).
+## Usage
 
----
-
-## How to put it online (GitHub Pages)
-
-You'll do this with **Claude Code** so you also learn Git along the way.
-
-### One-time setup
-1. Install Node.js (https://nodejs.org).
-2. Install Claude Code — see https://docs.claude.com for current steps.
-3. Make a free GitHub account at https://github.com.
-
-### Deploy with Claude Code
-1. Open a terminal in this folder and run `claude`.
-2. Tell it: *"Initialize a git repo here, create a new GitHub repo named
-   `<your-username>.github.io`, push these files, and enable GitHub Pages."*
-3. Claude Code will run the Git commands and explain each one as it goes.
-4. Your site goes live at `https://<your-username>.github.io`.
-
-### Updating the site later
-1. Edit your files.
-2. In the folder, run `claude` and say: *"Commit my changes and push them."*
-3. The live site updates in a minute or two.
-
-*(Prefer no terminal? You can instead create a repo on github.com and use
-"Add file → Upload files" to drag these in, then turn on Pages under
-Settings → Pages. Same result.)*
-
----
-
-## Notes
-- Keep this site and your resume consistent — don't let them contradict.
-- Only put real, verifiable work here. Repos should be public and clean.
-- The site is fully responsive; resize the browser to see the mobile layout.
+The code is free to read and learn from. The photographs in `/photos`, the project write-ups and the resume are © Sharan Venkatesh, all rights reserved. Please don't reuse them without permission.
