@@ -621,3 +621,11 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 /* ---------- 32. PHOTO STRIP: discourage saving (no right-click, drag or long-press save) ---------- */
 .lens-card { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .lens-card img { pointer-events: none; -webkit-user-drag: none; user-drag: none; }
+
+/* ---------- 33. HERO READABILITY over the dot grid ---------- */
+/* small gold text: darker gold for contrast, plus a solid cream backing so dots never sit behind letters */
+:root { --accent-text: #8a6a1c; }
+.hero .tag, .status-pill { background: var(--cream) !important; color: var(--accent-text) !important; border-color: var(--accent) !important; }
+.hero-meta .muted, .hero-meta > span:not(.status-pill), .hero-meta > div { color: var(--accent-text) !important; }
+/* soft cream halo around every bit of small hero text, as a fallback */
+.hero .mono, .hero .tag { text-shadow: 0 0 3px var(--cream), 0 0 6px var(--cream), 0 0 10px var(--cream); }
