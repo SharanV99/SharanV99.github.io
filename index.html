@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=32" />
+  <link rel="stylesheet" href="styles.css?v=33" />
 </head>
 
 <body>
@@ -321,20 +321,19 @@
 
         <!-- PROJECT 1 — card + case study (the case study text lives in the <dialog> further down) -->
         <article class="project-card reveal">
-          <div class="project-preview">
-            <span class="mono tiny">ADD CHART / MAP</span>
+          <div class="project-preview preview-fit preview-banner">
+            <img src="projects/boston-banner.png" alt="Boston 311: 1.3M requests, mean response time fell while the median stayed flat" loading="lazy" onerror="this.remove()" />
           </div>
           <div class="project-info">
             <div class="mono small muted"><span class="proj-num">04 /</span> R · LASSO</div>
             <div class="project-title">Boston 311 Service Requests</div>
-            <p class="card-result">City Worker App requests were resolved 284 hours faster than consumer-facing channels.</p>
+            <p class="card-result">Analyzed 1.3M Boston 311 requests in R: the average response time fell 72 hours a year, but the typical request didn't get faster.</p>
             <div class="card-tags">
-              <span class="card-tag">R</span><span class="card-tag">REGRESSION</span><span class="card-tag">STATS</span>
+              <span class="card-tag">R</span><span class="card-tag">REGRESSION</span><span class="card-tag">LASSO</span>
             </div>
             <div class="card-actions">
               <button class="card-btn" data-open="cs-311">CASE STUDY</button>
-              <!-- Set the repo URL here -->
-              <a class="card-btn ghost-btn" href="#" target="_blank" rel="noopener">CODE &nearr;</a>
+              <a class="card-btn ghost-btn" href="https://github.com/SharanV99/boston-311-analysis" target="_blank" rel="noopener">CODE &nearr;</a>
             </div>
           </div>
         </article>
@@ -349,18 +348,56 @@
            ============================================================ -->
       <dialog class="case-study" id="cs-311">
         <button class="cs-close" aria-label="Close">&times;</button>
-        <div class="mono small muted"><span class="proj-num">04 /</span> R · LASSO REGRESSION</div>
+        <div class="cs-hero cs-hero-banner">
+          <img src="projects/boston-banner.png" alt="Boston 311 summary banner: mean vs median response time" onerror="this.remove()" />
+        </div>
+        <div class="mono small muted"><span class="proj-num">04 /</span> R · LINEAR REGRESSION · LASSO</div>
         <h3 class="cs-title">Boston 311 Service Requests</h3>
+        <div class="cs-tags">
+          <span class="card-tag">TEAM OF 4 · REBUILT BY ME</span><span class="card-tag">NORTHEASTERN · WINTER 2025</span><span class="card-tag">R</span><span class="card-tag">OPEN DATA</span>
+        </div>
         <dl class="cs-body">
           <dt>Question</dt>
-          <dd>What actually drives how long the City of Boston takes to resolve a service request, and is the city getting faster?</dd>
+          <dd>Boston 311 is the city's non-emergency service line. What drives how long the city takes to resolve 1.3 million requests, and did it actually get faster between 2018 and 2022?</dd>
+          <dt>Data</dt>
+          <dd>1,300,153 requests from Analyze Boston (City of Boston open data), five yearly files combined into one dataset. Response time is the hours from opening to closing a request. 82,722 still-open requests were excluded, leaving 1,205,832 closed requests for modeling.</dd>
           <dt>Approach</dt>
-          <dd>Cleaned 1.3M service requests in R and engineered 31 features, including geospatial and temporal variables. Used LASSO regression to isolate the drivers of resolution time, with stepwise regression as a check.</dd>
+          <dd>Linear regression of response time on year, request type, department, neighborhood and submission source, so the time trend is separated from changes in the request mix. LASSO with 10-fold cross-validation to rank 175 request types, and a chi-square test with a heatmap for neighborhood differences.</dd>
           <dt>Finding</dt>
-          <dd>Requests submitted through the City Worker App were resolved 284 hours faster than those from consumer-facing channels. Average response time improved 13% year over year (119 hours per year, p &lt; 0.001).</dd>
-          <dt>Recommendation</dt>
-          <dd>Expand employee training and City Worker App adoption, since the internal channel is where the speed gains are.</dd>
+          <dd>The average fell, but the typical request did not get faster. After controls, average resolution time dropped 72 hours a year (95% CI −77 to −67, p &lt; 0.001), about 6.5% of the 2018 average. But the median stayed between 12 and 16 hours every year, and the average barely moved until a sharp drop in 2022. The improvement came from closing fewer extremely long-running cases.
+            <figure class="cs-figure">
+              <img src="projects/boston-by-year.png" alt="Average response time by year, 2018 to 2022" loading="lazy" />
+              <figcaption class="mono tiny">AVERAGE RESPONSE TIME BY YEAR</figcaption>
+            </figure>
+          </dd>
+          <dt>Channels</dt>
+          <dd>Raw median waits differ sharply: about 2.5 hours through the City Worker App, 9 hours through the resident app, 62 hours by phone and 75 hours through self-service web. Once request type, department and neighborhood are held constant, the resident app, phone and web are no longer significantly different. The City Worker App stays about 169 hours faster (95% CI 126 to 213), likely because staff log issues they fix on the spot, so this is not proof the app speeds up service.
+            <figure class="cs-figure">
+              <img src="projects/boston-by-source.png" alt="Response time by submission source, log scale" loading="lazy" />
+              <figcaption class="mono tiny">RESPONSE TIME BY SUBMISSION SOURCE · LOG SCALE</figcaption>
+            </figure>
+          </dd>
+          <dt>Patterns</dt>
+          <dd>Noise complaints and urgent requests resolve fastest; sidewalk repair, pavement markings and permit enforcement are slowest. Enforcement and abandoned-vehicle requests grew the most, jumping from about 43,000 in 2020 to 62,000 in 2021. Request mix also differs by neighborhood, with parking enforcement dominating South Boston and Dorchester.
+            <figure class="cs-figure">
+              <img src="projects/boston-trends.png" alt="Yearly requests for the eight most common reasons" loading="lazy" />
+              <figcaption class="mono tiny">TOP 8 REQUEST REASONS, 2018–2022</figcaption>
+            </figure>
+            <figure class="cs-figure">
+              <img src="projects/boston-heatmap.png" alt="Top request types across the busiest neighborhoods" loading="lazy" />
+              <figcaption class="mono tiny">TOP REQUEST TYPES BY NEIGHBORHOOD</figcaption>
+            </figure>
+          </dd>
+          <dt>What it means</dt>
+          <dd>Track the median alongside the mean, since an average-only dashboard would credit the city with faster service when the real change was clearing old cases. Focus resources on the slow categories. And don't push app adoption on speed grounds alone: after controls, resident channels resolve at similar speeds.</dd>
+          <dt>Limitations</dt>
+          <dd>Open cases are excluded, so the slowest requests are partly missing. Response times are heavily skewed, and the models explain individual requests poorly (cross-validated RMSE about 3,749 hours), so they are useful for comparing groups, not predicting one request. With 1.2 million rows almost everything is significant, so effect sizes matter more than p-values.</dd>
+          <dt>The rebuild</dt>
+          <dd>This began as a team project for ALY6015. In October 2026 I rebuilt the dataset from the city's source files, turned the code into a reproducible pipeline and re-ran the analysis. That corrected the course version's headline numbers: the City Worker App advantage went from 266 to 169 hours, and the yearly improvement from 119 hours (13%) to 72 hours (6.5%), with a flat median the original never reported.</dd>
         </dl>
+        <div class="cs-actions">
+          <a class="card-btn" href="https://github.com/SharanV99/boston-311-analysis" target="_blank" rel="noopener">CODE ON GITHUB &nearr;</a>
+        </div>
       </dialog>
 
       <dialog class="case-study" id="cs-genai">
@@ -641,6 +678,6 @@
 
   </main>
 
-  <script src="script.js?v=32"></script>
+  <script src="script.js?v=33"></script>
 </body>
 </html>
