@@ -1,6 +1,6 @@
 # Sharan Venkatesh · Data Analyst Portfolio
 
-**Live site → [sharanv99.github.io](https://sharanv99.github.io)**
+**Live site → [sharanvenkatesh.github.io](https://sharanvenkatesh.github.io)**
 
 Personal portfolio of Sharan Venkatesh, a data analyst in Seattle with a Master's in Analytics (Applied Machine Intelligence) from Northeastern University. The site collects my analytics projects, experience and certifications, plus some photography.
 
@@ -8,10 +8,10 @@ Personal portfolio of Sharan Venkatesh, a data analyst in Seattle with a Master'
 
 | # | Project | What it shows | Code |
 |---|---|---|---|
-| 01 | **Predicting Hospitalization Intensity** | Three-class risk model on 50,733 U.S. adults (MEPS), including catching and removing a data leak that inflated performance | [meps-hospitalization-risk](https://github.com/SharanV99/meps-hospitalization-risk) |
-| 02 | **Last.fm Churn Propensity** | Churn pipeline on real Last.fm listening data with a leakage-safe model and expected-value targeting | [lastfm-churn](https://github.com/SharanV99/lastfm-churn) |
-| 03 | **AI Travel Concierge** | RAG travel planner for 2026 World Cup fans, with a schedule check that blocks answers about matches that don't exist | [ai-travel-concierge](https://github.com/SharanV99/ai-travel-concierge) |
-| 04 | **Boston 311 Service Requests** | 1.3M city service requests in R: the average response time fell, but the typical request didn't get faster | [boston-311-analysis](https://github.com/SharanV99/boston-311-analysis) |
+| 01 | **Predicting Hospitalization Intensity** | Three-class risk model on 50,733 U.S. adults (MEPS), including catching and removing a data leak that inflated performance | [meps-hospitalization-risk](https://github.com/SharanVenkatesh/meps-hospitalization-risk) |
+| 02 | **Last.fm Churn Propensity** | Churn pipeline on real Last.fm listening data with a leakage-safe model and expected-value targeting | [lastfm-churn](https://github.com/SharanVenkatesh/lastfm-churn) |
+| 03 | **AI Travel Concierge** | RAG travel planner for 2026 World Cup fans, with a schedule check that blocks answers about matches that don't exist | [ai-travel-concierge](https://github.com/SharanVenkatesh/ai-travel-concierge) |
+| 04 | **Boston 311 Service Requests** | 1.3M city service requests in R: the average response time fell, but the typical request didn't get faster | [boston-311-analysis](https://github.com/SharanVenkatesh/boston-311-analysis) |
 
 Each project card opens a short case study on the site: the question, approach, findings, limitations and charts.
 
@@ -43,8 +43,8 @@ resume.pdf          latest resume
 No setup needed. Clone the repo and open `index.html` in a browser.
 
 ```bash
-git clone https://github.com/SharanV99/SharanV99.github.io.git
-cd SharanV99.github.io
+git clone https://github.com/SharanVenkatesh/sharanvenkatesh.github.io.git
+cd sharanvenkatesh.github.io
 open index.html
 ```
 
