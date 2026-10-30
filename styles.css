@@ -629,3 +629,6 @@ body::after  { right: 0; background-size: 12px 100%, 5px 100%, 1px 100%; backgro
 .hero-meta .muted, .hero-meta > span:not(.status-pill), .hero-meta > div { color: var(--accent-text) !important; }
 /* soft cream halo around every bit of small hero text, as a fallback */
 .hero .mono, .hero .tag { text-shadow: 0 0 3px var(--cream), 0 0 6px var(--cream), 0 0 10px var(--cream); }
+
+/* ---------- 34. "VIEW ALL ON GITHUB" pill centred under the project grid ---------- */
+.projects-section .big-pill-btn { display: flex; width: fit-content; margin: 34px auto 0; }
